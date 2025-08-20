@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=3 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Texture2D" uid="uid://clriqk7a0nr26" path="res://icon.svg" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_e2o6t")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource("1_80nbo")
 
 [node name="Camera3D" type="Camera3D" parent="Sprite3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.745)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.40538)
 current = true
