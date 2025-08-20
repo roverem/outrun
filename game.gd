@@ -1,8 +1,8 @@
 extends Node3D
 
 @onready var camera_3d: Camera3D = $Sprite3D/Camera3D
-@export var amplitude: float = 1.0  # distancia máxima hacia adelante/atrás
-@export var speed: float = 2.0      # velocidad de oscilación
+@export var amplitude: float = 1.5  # distancia máxima hacia adelante/atrás
+@export var speed: float = 3.0      # velocidad de oscilación
 
 var base_position: Vector3
 
