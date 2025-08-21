@@ -7,6 +7,8 @@
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e2o6t")
+amplitude = null
+speed = null
 
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)
@@ -22,7 +24,4 @@ current = true
 fov = 80.5
 
 [node name="DirectionalLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-0.999796, 0, -0.0201921, 0, 1, 0, 0.0201921, 0, -0.999796, 0, 2.70507, -1.47715)
-distance_fade_enabled = true
-spot_range = 18.9476
-spot_angle = 7.05594
+transform = Transform3D(-0.999796, 0, -0.0201921, 0, 1, 0, 0.0201921, 0, -0.999796, 0, 2.23024, 0)

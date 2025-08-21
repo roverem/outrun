@@ -3,6 +3,7 @@ extends Node3D
 @onready var camera_3d: Camera3D = $"sedan-sports"/Camera3D
 @export var amplitude: float = 0.2  # distancia máxima hacia adelante/atrás
 @export var speed: float = 0.3      # velocidad de oscilación
+@onready var directional_light_3d: SpotLight3D = $DirectionalLight3D
 
 var angle_range:float = 15.0
 var base_position: Vector3
@@ -36,7 +37,10 @@ func _process(delta: float) -> void:
 	camera_3d.rotation.y = clamp(base_rotation.y + camera_x_rate * 0.4, -3.6, -3)
 	
 	print(camera_3d.rotation)
-	
+	#var mouse_pos = event.position
+	var from = camera_3d.project_ray_origin(mouse_pos)
+	var to = from + camera_3d.project_ray_normal(mouse_pos) * 1000.0
+	directional_light_3d.look_at(to)
 	
 	
 
@@ -46,3 +50,5 @@ func _unhandled_input(event):
 		var from = camera_3d.project_ray_origin(mouse_pos)
 		var to = from + camera_3d.project_ray_normal(mouse_pos) * 1000.0
 		print("Ray from:", from, "to:", to);
+		
+		
