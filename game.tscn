@@ -15,10 +15,10 @@ region = Rect2(208, 106, 64, 64)
 script = ExtResource("1_e2o6t")
 amplitude = 0.0
 speed = 0.0
-x_min_cam_angle = -188.0
-x_max_cam_angle = -175.0
-y_min_cam_angle = -25.0
-y_max_cam_angle = 20.0
+horizontal_min_angle = -212.208
+horizontal_max_angle = -155.584
+vertical_min_angle = -6.136
+vertical_max_angle = 22.792
 mouse_sensitivity = 1.553
 
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]

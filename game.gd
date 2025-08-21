@@ -4,10 +4,10 @@ extends Node3D
 @export var amplitude: float = 0.2  # distancia máxima hacia adelante/atrás
 @export var speed: float = 0.3      # velocidad de oscilación
 @onready var directional_light_3d: SpotLight3D = $DirectionalLight3D
-@export_range(-220, -180) var x_min_cam_angle
-@export_range(-180, -100) var x_max_cam_angle
-@export_range(-45, 0) var y_min_cam_angle
-@export_range(0, 90) var y_max_cam_angle
+@export_range(-220, -180) var horizontal_min_angle
+@export_range(-180, -100) var horizontal_max_angle
+@export_range(-45, 0) var vertical_min_angle
+@export_range(0, 90) var vertical_max_angle
 @export_range(0.2, 4) var mouse_sensitivity:float
 
 @onready var debug_text:RichTextLabel = %DebugText
@@ -40,12 +40,12 @@ func _process(delta: float) -> void:
 	
 	debug_text.add_text("\n base rotation x: " + str( rad_to_deg(base_rotation.x) ) + " y: " + str( rad_to_deg(base_rotation.y) ) )
 	
-	camera_3d.rotation.x = clamp(base_rotation.x + vertical_rate * mouse_sensitivity, deg_to_rad( y_min_cam_angle), deg_to_rad( y_max_cam_angle) )
-	camera_3d.rotation.y = clamp(base_rotation.y + horizontal_rate * mouse_sensitivity, deg_to_rad(x_min_cam_angle), deg_to_rad(x_max_cam_angle))
+	camera_3d.rotation.x = clamp(base_rotation.x + vertical_rate * mouse_sensitivity, deg_to_rad( vertical_min_angle), deg_to_rad( vertical_max_angle) )
+	camera_3d.rotation.y = clamp(base_rotation.y + horizontal_rate * mouse_sensitivity, deg_to_rad(horizontal_min_angle), deg_to_rad(horizontal_max_angle))
 	
-	debug_text.add_text("\n camera rotation vertical" + str( rad_to_deg(camera_3d.rotation.x)) + " horizontal: " + str(rad_to_deg(camera_3d.rotation.y)) )
-	debug_text.add_text("\n min_angle x " + str( x_min_cam_angle) + " : " + str(  x_max_cam_angle ) )
-	debug_text.add_text("\n min_angle y " + str( y_min_cam_angle) + " : " + str( y_max_cam_angle  ) )
+	debug_text.add_text("\n camera rotation horizontal" + str( rad_to_deg(camera_3d.rotation.y)) + " vertical: " + str(rad_to_deg(camera_3d.rotation.x)) )
+	debug_text.add_text("\n horizontal angle " + str( horizontal_min_angle) + " : " + str(  horizontal_max_angle ) )
+	debug_text.add_text("\n vertical angle " + str( vertical_min_angle) + " : " + str( vertical_max_angle  ) )
 	
 	#print(camera_3d.rotation)
 	#var mouse_pos = event.position
