@@ -5,16 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/sedan-sports.glb" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/police.glb" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/taxi.glb" id="5_7jktm"]
-[ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
+[ext_resource type="Script" path="res://crosshair.gd" id="6_ryrav"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e2o6t")
 amplitude = 0.0
 speed = 0.0
-x_min_cam_angle = -0.1
-x_max_cam_angle = -2.8
-y_min_cam_angle = -0.5
-y_max_cam_angle = 0.5
+x_min_cam_angle = -3.5
+x_max_cam_angle = -2.9
+y_min_cam_angle = -0.546
+y_max_cam_angle = -0.44
 
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)

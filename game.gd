@@ -4,10 +4,10 @@ extends Node3D
 @export var amplitude: float = 0.2  # distancia máxima hacia adelante/atrás
 @export var speed: float = 0.3      # velocidad de oscilación
 @onready var directional_light_3d: SpotLight3D = $DirectionalLight3D
-@export_range(-5,5) var x_min_cam_angle
-@export_range(-5,5) var x_max_cam_angle
-@export_range(-5,1) var y_min_cam_angle
-@export_range(-5,1) var y_max_cam_angle
+@export_range(-3.5, -2.75) var x_min_cam_angle
+@export_range(-3.5, -2.75) var x_max_cam_angle
+@export_range(-0.8, 0) var y_min_cam_angle
+@export_range(-0.8, 0) var y_max_cam_angle
 
 var angle_range:float = 15.0
 var base_position: Vector3
@@ -31,18 +31,15 @@ func _process(delta: float) -> void:
 	var camera_x_rate = x_dist / center.x;
 	var camera_y_rate = y_dist / center.y;
 	
-	print(camera_x_rate, camera_y_rate)
+	#print(camera_x_rate, camera_y_rate)
+	print( base_rotation.x + camera_y_rate * 0.4, base_rotation.y + camera_x_rate * 0.4)
 	
-	if mouse_pos.x > center.x:
-		print("Mouse a la DERECHA de la pantalla", x_dist , y_dist)
-	else:
-		print("Mouse a la IZQUIERDA de la pantalla", x_dist, y_dist)
 	#camera_3d.rotation.x = clamp(base_rotation.x + camera_y_rate * 0.4, -1, 0.2)
 	#camera_3d.rotation.y = clamp(base_rotation.y + camera_x_rate * 0.4, -3.6, -3)
 	camera_3d.rotation.x = clamp(base_rotation.x + camera_y_rate * 0.4, y_min_cam_angle, y_max_cam_angle)
 	camera_3d.rotation.y = clamp(base_rotation.y + camera_x_rate * 0.4, x_min_cam_angle, x_max_cam_angle)
 	
-	print(camera_3d.rotation)
+	#print(camera_3d.rotation)
 	#var mouse_pos = event.position
 	var from = camera_3d.project_ray_origin(mouse_pos)
 	var to = from + camera_3d.project_ray_normal(mouse_pos) * 1000.0
