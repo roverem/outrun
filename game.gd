@@ -4,10 +4,13 @@ extends Node3D
 @export var amplitude: float = 0.2  # distancia máxima hacia adelante/atrás
 @export var speed: float = 0.3      # velocidad de oscilación
 @onready var directional_light_3d: SpotLight3D = $DirectionalLight3D
-@export_range(-3.5, -2.75) var x_min_cam_angle
-@export_range(-3.5, -2.75) var x_max_cam_angle
-@export_range(-0.8, 0) var y_min_cam_angle
-@export_range(-0.8, 0) var y_max_cam_angle
+@export_range(-220, -180) var x_min_cam_angle
+@export_range(-180, -100) var x_max_cam_angle
+@export_range(-45, 0) var y_min_cam_angle
+@export_range(0, 90) var y_max_cam_angle
+@export_range(0.2, 4) var mouse_sensitivity:float
+
+@onready var debug_text:RichTextLabel = %DebugText
 
 var angle_range:float = 15.0
 var base_position: Vector3
@@ -24,20 +27,25 @@ func _process(delta: float) -> void:
 	var viewport_size = get_viewport().get_visible_rect().size
 	
 	var center = viewport_size / 2
+	debug_text.clear()
+	debug_text.add_text( "center " + str(center) )
 	
 	var x_dist = center.x - mouse_pos.x;
 	var y_dist = center.y - mouse_pos.y;
 	
-	var camera_x_rate = x_dist / center.x;
-	var camera_y_rate = y_dist / center.y;
+	var horizontal_rate = x_dist / center.x;
+	var vertical_rate = y_dist / center.y;
 	
-	#print(camera_x_rate, camera_y_rate)
-	print( base_rotation.x + camera_y_rate * 0.4, base_rotation.y + camera_x_rate * 0.4)
+	debug_text.add_text("\nRATE horizontal: " + str(horizontal_rate) + " vertical: " + str(vertical_rate) )
 	
-	#camera_3d.rotation.x = clamp(base_rotation.x + camera_y_rate * 0.4, -1, 0.2)
-	#camera_3d.rotation.y = clamp(base_rotation.y + camera_x_rate * 0.4, -3.6, -3)
-	camera_3d.rotation.x = clamp(base_rotation.x + camera_y_rate * 0.4, y_min_cam_angle, y_max_cam_angle)
-	camera_3d.rotation.y = clamp(base_rotation.y + camera_x_rate * 0.4, x_min_cam_angle, x_max_cam_angle)
+	debug_text.add_text("\n base rotation x: " + str( rad_to_deg(base_rotation.x) ) + " y: " + str( rad_to_deg(base_rotation.y) ) )
+	
+	camera_3d.rotation.x = clamp(base_rotation.x + vertical_rate * mouse_sensitivity, deg_to_rad( y_min_cam_angle), deg_to_rad( y_max_cam_angle) )
+	camera_3d.rotation.y = clamp(base_rotation.y + horizontal_rate * mouse_sensitivity, deg_to_rad(x_min_cam_angle), deg_to_rad(x_max_cam_angle))
+	
+	debug_text.add_text("\n camera rotation vertical" + str( rad_to_deg(camera_3d.rotation.x)) + " horizontal: " + str(rad_to_deg(camera_3d.rotation.y)) )
+	debug_text.add_text("\n min_angle x " + str( x_min_cam_angle) + " : " + str(  x_max_cam_angle ) )
+	debug_text.add_text("\n min_angle y " + str( y_min_cam_angle) + " : " + str( y_max_cam_angle  ) )
 	
 	#print(camera_3d.rotation)
 	#var mouse_pos = event.position

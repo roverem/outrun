@@ -15,10 +15,11 @@ region = Rect2(208, 106, 64, 64)
 script = ExtResource("1_e2o6t")
 amplitude = 0.0
 speed = 0.0
-x_min_cam_angle = -3.5
-x_max_cam_angle = -2.9
-y_min_cam_angle = -0.546
-y_max_cam_angle = -0.44
+x_min_cam_angle = -188.0
+x_max_cam_angle = -175.0
+y_min_cam_angle = -25.0
+y_max_cam_angle = 20.0
+mouse_sensitivity = 1.553
 
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)
@@ -50,6 +51,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ryrav")
 script = ExtResource("6_ryrav")
+
+[node name="DebugText" type="RichTextLabel" parent="sedan-sports/CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 763.0
+offset_bottom = 345.0
+scroll_active = false
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="sedan-sports"]
 transform = Transform3D(-0.999778, 0, 0.0210819, 0, 1, 0, -0.0210819, 0, -0.999778, -0.390696, 0.69936, 1.09439)
