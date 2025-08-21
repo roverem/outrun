@@ -17,5 +17,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90765, 0, 10.2651)
 [node name="sedan-sports" parent="." instance=ExtResource("3_feb5d")]
 
 [node name="Camera3D" type="Camera3D" parent="sedan-sports"]
-transform = Transform3D(-1, -8.74228e-08, -5.06619e-15, -4.97078e-08, 0.568591, 0.822621, -7.19158e-08, 0.822621, -0.568591, 0, 5.625, -1.72316)
+transform = Transform3D(-1, -8.74228e-08, -6.5273e-15, -8.277e-08, 0.946779, 0.321886, -2.81401e-08, 0.321886, -0.946779, 0, 1.8569, -2.35227)
 current = true
+fov = 80.5

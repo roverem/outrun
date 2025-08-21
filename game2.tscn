@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcbfyaimr2pwe"]
+
+[ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_oigcv"]
+[ext_resource type="Texture2D" uid="uid://clriqk7a0nr26" path="res://icon.svg" id="2_6ugsd"]
+[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/sedan-sports.glb" id="3_rt4am"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_oigcv")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("2_6ugsd")
+
+[node name="sedan-sports" parent="." instance=ExtResource("3_rt4am")]
+
+[node name="Camera3D" type="Camera3D" parent="sedan-sports"]
+transform = Transform3D(-1, -8.74228e-08, -5.06619e-15, -4.97078e-08, 0.568591, 0.822621, -7.19158e-08, 0.822621, -0.568591, 0, 5.625, -1.72316)
+current = true
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="sedan-sports"]
+transform = Transform3D(-0.999778, 0, 0.0210819, 0, 1, 0, -0.0210819, 0, -0.999778, -0.390696, 0.69936, 1.09439)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="sedan-sports"]
+transform = Transform3D(-0.99992, 0, -0.0126184, 0, 1, 0, 0.0126184, 0, -0.99992, 0.402436, 0.69936, 1.11244)
