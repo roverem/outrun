@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=8 format=3 uid="uid://c3wmweemb4l6i"]
 
-[ext_resource type="Texture2D" uid="uid://clriqk7a0nr26" path="res://icon.svg" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/sedan-sports.glb" id="3_feb5d"]
-[ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/police.glb" id="4_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/taxi.glb" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/3D/police.glb" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/taxi.glb" id="5_7jktm"]
+[ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="5_ryrav"]
 [ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
+atlas = ExtResource("5_ryrav")
+region = Rect2(208, 106, 64, 64)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e2o6t")
@@ -40,12 +44,25 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -576.0
 offset_top = -324.0
-offset_right = -448.0
-offset_bottom = -196.0
+offset_right = -512.0
+offset_bottom = -260.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_80nbo")
+texture = SubResource("AtlasTexture_ryrav")
 script = ExtResource("6_ryrav")
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="sedan-sports"]
+transform = Transform3D(-0.999778, 0, 0.0210819, 0, 1, 0, -0.0210819, 0, -0.999778, -0.390696, 0.69936, 1.09439)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="sedan-sports"]
+transform = Transform3D(-0.99992, 0, -0.0126184, 0, 1, 0, 0.0126184, 0, -0.99992, 0.402436, 0.69936, 1.11244)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="sedan-sports"]
+transform = Transform3D(-0.943344, 0, -0.331816, -0.127344, 0.923425, 0.362036, 0.306407, 0.38378, -0.871108, -0.390696, 1.5657, -2.23555)
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="sedan-sports"]
+transform = Transform3D(-0.844973, 0, 0.53481, 0.207669, 0.921531, 0.328106, -0.492844, 0.388304, -0.778669, 0.402436, 1.19712, -2.47349)
+spot_range = 4.68257
 
 [node name="DirectionalLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-0.999796, 0, -0.0201921, 0, 1, 0, 0.0201921, 0, -0.999796, 0, 2.70507, -1.47715)

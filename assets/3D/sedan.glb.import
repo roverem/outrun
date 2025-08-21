@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://34bsutjpak0j"
-path="res://.godot/imported/taxi.glb-b59f66ab8490c4f400240089a35cab32.scn"
+uid="uid://dpfcjx2il8f85"
+path="res://.godot/imported/sedan.glb-a36f4a6e65d1a364609bbf7cfdadd4aa.scn"
 
 [deps]
 
-source_file="res://assets/taxi.glb"
-dest_files=["res://.godot/imported/taxi.glb-b59f66ab8490c4f400240089a35cab32.scn"]
+source_file="res://assets/3D/sedan.glb"
+dest_files=["res://.godot/imported/sedan.glb-a36f4a6e65d1a364609bbf7cfdadd4aa.scn"]
 
 [params]
 

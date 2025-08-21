@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_oigcv"]
 [ext_resource type="Texture2D" uid="uid://clriqk7a0nr26" path="res://icon.svg" id="2_6ugsd"]
-[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/sedan-sports.glb" id="3_rt4am"]
+[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="3_rt4am"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_oigcv")
