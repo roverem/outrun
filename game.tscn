@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=7 format=3 uid="uid://c3wmweemb4l6i"]
 
+[ext_resource type="Texture2D" uid="uid://clriqk7a0nr26" path="res://icon.svg" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/sedan-sports.glb" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/police.glb" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/taxi.glb" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e2o6t")
+amplitude = 0.0
+speed = 0.0
+x_min_cam_angle = -0.1
+x_max_cam_angle = -2.8
+y_min_cam_angle = -0.5
+y_max_cam_angle = 0.5
 
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)
@@ -17,9 +25,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90765, 0, 10.2651)
 [node name="sedan-sports" parent="." instance=ExtResource("3_feb5d")]
 
 [node name="Camera3D" type="Camera3D" parent="sedan-sports"]
-transform = Transform3D(-1, -8.74228e-08, -6.5273e-15, -8.277e-08, 0.946779, 0.321886, -2.81401e-08, 0.321886, -0.946779, 0, 1.8569, -2.35227)
+transform = Transform3D(-1, 0, -8.74228e-08, -3.90502e-08, 0.894693, 0.446682, 7.82165e-08, 0.446682, -0.894693, 0, 1.91139, -2.352)
 current = true
 fov = 80.5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="sedan-sports"]
+layer = 10
+
+[node name="TextureRect" type="TextureRect" parent="sedan-sports/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_80nbo")
+script = ExtResource("6_ryrav")
 
 [node name="DirectionalLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-0.999796, 0, -0.0201921, 0, 1, 0, 0.0201921, 0, -0.999796, 0, 2.70507, -1.47715)
