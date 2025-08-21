@@ -10,9 +10,8 @@ script = ExtResource("1_e2o6t")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource("1_80nbo")
 
-[node name="Camera3D" type="Camera3D" parent="Sprite3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.40538)
-current = true
-
 [node name="sedan-sports" parent="." instance=ExtResource("3_feb5d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64664, 0, 1.44352)
+
+[node name="Camera3D" type="Camera3D" parent="sedan-sports"]
+transform = Transform3D(-1, -8.74228e-08, -5.06619e-15, -4.97078e-08, 0.568591, 0.822621, -7.19158e-08, 0.822621, -0.568591, 0, 5.625, -1.72316)
+current = true
