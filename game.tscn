@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=15 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="3_feb5d"]
@@ -6,10 +6,29 @@
 [ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/taxi.glb" id="5_7jktm"]
 [ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="5_ryrav"]
 [ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
+[ext_resource type="Texture2D" uid="uid://btlkhkntrwxit" path="res://assets/3D/Textures/textura_asfalto.png" id="7_eow3j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
 atlas = ExtResource("5_ryrav")
 region = Rect2(208, 106, 64, 64)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ryrav"]
+
+[sub_resource type="Sky" id="Sky_eow3j"]
+sky_material = SubResource("PhysicalSkyMaterial_ryrav")
+
+[sub_resource type="Environment" id="Environment_j5wjh"]
+background_mode = 2
+sky = SubResource("Sky_eow3j")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ryrav"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5wjh"]
+albedo_texture = ExtResource("7_eow3j")
+
+[sub_resource type="BoxMesh" id="BoxMesh_eow3j"]
+material = SubResource("StandardMaterial3D_j5wjh")
+size = Vector3(16, 0.25, 5)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e2o6t")
@@ -73,6 +92,17 @@ spot_range = 4.68257
 
 [node name="DirectionalLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-0.999796, 0, -0.0201921, 0, 1, 0, 0.0201921, 0, -0.999796, 0, 2.70507, -1.47715)
+light_energy = 4.232
 distance_fade_enabled = true
 spot_range = 18.9476
 spot_angle = 7.05594
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j5wjh")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ryrav")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
+mesh = SubResource("BoxMesh_eow3j")
