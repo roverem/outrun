@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4khraqvy6p6d"]
+
+[ext_resource type="Texture2D" uid="uid://btlkhkntrwxit" path="res://assets/3D/Textures/textura_asfalto.png" id="1_4eb0k"]
+[ext_resource type="Script" uid="uid://br50it5o46rug" path="res://track_segment.gd" id="1_x3oc1"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_x3oc1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5wjh"]
+albedo_texture = ExtResource("1_4eb0k")
+
+[sub_resource type="BoxMesh" id="BoxMesh_j4nw3"]
+material = SubResource("StandardMaterial3D_j5wjh")
+size = Vector3(16, 0.25, 5)
+
+[node name="TrackSegment" type="Node3D"]
+script = ExtResource("1_x3oc1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_x3oc1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
+mesh = SubResource("BoxMesh_j4nw3")

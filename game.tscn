@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=16 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://TrackSegment.tscn" id="2_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/3D/police.glb" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/taxi.glb" id="5_7jktm"]
@@ -12,10 +13,10 @@
 atlas = ExtResource("5_ryrav")
 region = Rect2(208, 106, 64, 64)
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ryrav"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j5wjh"]
 
 [sub_resource type="Sky" id="Sky_eow3j"]
-sky_material = SubResource("PhysicalSkyMaterial_ryrav")
+sky_material = SubResource("ProceduralSkyMaterial_j5wjh")
 
 [sub_resource type="Environment" id="Environment_j5wjh"]
 background_mode = 2
@@ -23,11 +24,11 @@ sky = SubResource("Sky_eow3j")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ryrav"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5wjh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eow3j"]
 albedo_texture = ExtResource("7_eow3j")
 
 [sub_resource type="BoxMesh" id="BoxMesh_eow3j"]
-material = SubResource("StandardMaterial3D_j5wjh")
+material = SubResource("StandardMaterial3D_eow3j")
 size = Vector3(16, 0.25, 5)
 
 [node name="Node3D" type="Node3D"]
@@ -39,6 +40,7 @@ horizontal_max_angle = -155.584
 vertical_min_angle = -6.136
 vertical_max_angle = 22.792
 mouse_sensitivity = 1.553
+segment_scene = ExtResource("2_j5wjh")
 
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)
@@ -101,8 +103,12 @@ spot_angle = 7.05594
 environment = SubResource("Environment_j5wjh")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+visible = false
 navigation_mesh = SubResource("NavigationMesh_ryrav")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
+visible = false
 mesh = SubResource("BoxMesh_eow3j")
+
+[node name="Segments" type="Node3D" parent="."]
