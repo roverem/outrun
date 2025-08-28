@@ -13,17 +13,17 @@ extends Node3D
 @onready var debug_text:RichTextLabel = %DebugText
 
 @export var segment_scene: PackedScene          # arrastra TrackSegment.tscn
-@export var move_speed: float = 30.0            # unidades/seg
-@export var pool_size: int = 25                # cuántas piezas mantener vivas
+@export var move_speed: float = 10.0            # unidades/seg
+@export var pool_size: int = 15                # cuántas piezas mantener vivas
 @export var segment_length: float = 5.0        # fallback si la pieza no lo exporta
-@export var spawn_ahead: float = 250.0          # hasta dónde “llenar” por delante
+@export var spawn_ahead: float = 50.0          # hasta dónde “llenar” por delante
 @onready var segments_root: Node3D = $Segments
 
 var angle_range:float = 15.0
 var base_position: Vector3
 var base_rotation: Vector3
 var _active := []            # Array[Node3D]
-var _next_z := 0.0           # dónde colocar la próxima pieza (en +Z)
+var _next_z := 50.0           # dónde colocar la próxima pieza (en +Z)
 
 func _ready() -> void:
 	base_position = camera_3d.position  # guarda la posición inicial

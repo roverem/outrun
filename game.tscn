@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=18 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://TrackSegment.tscn" id="2_j5wjh"]
@@ -9,15 +9,17 @@
 [ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
 [ext_resource type="Texture2D" uid="uid://bwoocqosrk5if" path="res://assets/2D/shotgun.png" id="6_vef74"]
 [ext_resource type="Texture2D" uid="uid://cksoxnbpj1gxe" path="res://assets/3D/Textures/textura_pared.png" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://c52hoc7ny6bmk" path="res://assets/3D/Skyboxes/Skyboxes/AllSkyFree_Sky_OvercastLow_Equirect.png" id="9_hve3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
 atlas = ExtResource("5_ryrav")
 region = Rect2(208, 106, 64, 64)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j5wjh"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mfdv2"]
+panorama = ExtResource("9_hve3p")
 
 [sub_resource type="Sky" id="Sky_eow3j"]
-sky_material = SubResource("ProceduralSkyMaterial_j5wjh")
+sky_material = SubResource("PanoramaSkyMaterial_mfdv2")
 
 [sub_resource type="Environment" id="Environment_j5wjh"]
 background_mode = 2
@@ -115,13 +117,6 @@ navigation_mesh = SubResource("NavigationMesh_ryrav")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
 visible = false
-mesh = SubResource("BoxMesh_eow3j")
-
-[node name="pared_falopa" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_ryrav")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="pared_falopa"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 40.9577)
 mesh = SubResource("BoxMesh_eow3j")
 
 [node name="Segments" type="Node3D" parent="."]
