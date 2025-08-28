@@ -94,8 +94,9 @@ func _spawn_segment_at(z: float) -> void:
 	# Avanza el cursor según el largo real de la pieza (si lo exporta), o el fijo:
 	var seg_len: float = segment_length  # fallback
 	if seg is TrackSegment:
-		seg_len = (seg as TrackSegment).length  # tipado, sin Variant
+		seg_len = (seg as TrackSegment).length  # tipado, sin Variant  //tomar valor de un valor de z
 	 # colocar centro	
+	print(_next_z)
 	_next_z += seg_len
 
 func _scroll_world(delta: float) -> void:
@@ -112,9 +113,10 @@ func _recycle_segments() -> void:
 		if seg.global_transform.origin.z < despawn_z:
 			_active.remove_at(i)
 			seg.queue_free()   # destruye de forma segura al final del frame
-
+ 
 func _ensure_filled_ahead() -> void:
 	# Mantén el “tapete” extendido por delante de la cámara
-	var target_front := camera_3d.global_transform.origin.z + spawn_ahead
+	var target_front := camera_3d.global_transform.origin.z +spawn_ahead
+	print("spawn_ahead ", spawn_ahead, " ", target_front)
 	while _next_z + segments_root.global_transform.origin.z < target_front and _active.size() < pool_size:
 		_spawn_segment_at(_next_z + segments_root.global_transform.origin.z)
