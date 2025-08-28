@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/taxi.glb" id="5_7jktm"]
 [ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="5_ryrav"]
 [ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
-[ext_resource type="Texture2D" uid="uid://btlkhkntrwxit" path="res://assets/3D/Textures/textura_asfalto.png" id="7_eow3j"]
+[ext_resource type="Texture2D" uid="uid://cksoxnbpj1gxe" path="res://assets/3D/Textures/textura_pared.png" id="8_j5wjh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
 atlas = ExtResource("5_ryrav")
@@ -25,11 +25,11 @@ sky = SubResource("Sky_eow3j")
 [sub_resource type="NavigationMesh" id="NavigationMesh_ryrav"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eow3j"]
-albedo_texture = ExtResource("7_eow3j")
+albedo_texture = ExtResource("8_j5wjh")
 
 [sub_resource type="BoxMesh" id="BoxMesh_eow3j"]
 material = SubResource("StandardMaterial3D_eow3j")
-size = Vector3(16, 0.25, 5)
+size = Vector3(10, 5, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e2o6t")
@@ -109,6 +109,13 @@ navigation_mesh = SubResource("NavigationMesh_ryrav")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
 visible = false
+mesh = SubResource("BoxMesh_eow3j")
+
+[node name="pared_falopa" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ryrav")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pared_falopa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 40.9577)
 mesh = SubResource("BoxMesh_eow3j")
 
 [node name="Segments" type="Node3D" parent="."]

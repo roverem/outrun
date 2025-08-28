@@ -14,7 +14,7 @@ extends Node3D
 
 @export var segment_scene: PackedScene          # arrastra TrackSegment.tscn
 @export var move_speed: float = 30.0            # unidades/seg
-@export var pool_size: int = 50                 # cuántas piezas mantener vivas
+@export var pool_size: int = 25                # cuántas piezas mantener vivas
 @export var segment_length: float = 5.0        # fallback si la pieza no lo exporta
 @export var spawn_ahead: float = 250.0          # hasta dónde “llenar” por delante
 @onready var segments_root: Node3D = $Segments
@@ -117,4 +117,4 @@ func _ensure_filled_ahead() -> void:
 	# Mantén el “tapete” extendido por delante de la cámara
 	var target_front := camera_3d.global_transform.origin.z + spawn_ahead
 	while _next_z + segments_root.global_transform.origin.z < target_front and _active.size() < pool_size:
-		_spawn_segment_at(_next_z)
+		_spawn_segment_at(_next_z + segments_root.global_transform.origin.z)
