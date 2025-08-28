@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqrxhxeiwbi2m"]
+
+[ext_resource type="Texture2D" uid="uid://cd3ecwg4nu42p" path="res://assets/2D/hole.png" id="1_1xqeo"]
+
+[node name="Hole" type="Sprite3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+texture = ExtResource("1_1xqeo")
+region_enabled = true
+region_rect = Rect2(6, 3.5, 115, 117)

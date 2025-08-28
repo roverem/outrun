@@ -16,7 +16,8 @@ extends Node3D
 @export var move_speed: float = 10.0            # unidades/seg
 @export var pool_size: int = 15                # cuántas piezas mantener vivas
 @export var segment_length: float = 5.0        # fallback si la pieza no lo exporta
-@export var spawn_ahead: float = 50.0          # hasta dónde “llenar” por delante
+@export var spawn_ahead: float = 250.0          # hasta dónde “llenar” por delante
+@export var hole_scene:PackedScene
 @onready var segments_root: Node3D = $Segments
 
 var angle_range:float = 15.0
@@ -35,6 +36,8 @@ func _process(delta: float) -> void:
 	camera_3d.position.y = base_position.y + sin(Time.get_ticks_msec() / 1000.0 * speed) * amplitude
 	var mouse_pos = get_viewport().get_mouse_position()
 	var viewport_size = get_viewport().get_visible_rect().size
+	
+	camera_3d.far = 100000
 	
 	var center = viewport_size / 2
 	debug_text.clear()
@@ -71,8 +74,31 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		var mouse_pos = event.position
 		var from = camera_3d.project_ray_origin(mouse_pos)
-		var to = from + camera_3d.project_ray_normal(mouse_pos) * 1000.0
+		var to = from + camera_3d.project_ray_normal(mouse_pos) * 5000.0
+		
 		print("Ray from:", from, "to:", to);
+		
+		# Create ray
+		var _from = camera_3d.project_ray_origin(mouse_pos)
+		var _to = _from + camera_3d.project_ray_normal(mouse_pos) * 5000.0
+
+		# Raycast into world
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(_from, _to)
+		var result = space_state.intersect_ray(query)
+
+		print(result)
+		
+		if result:
+			var hit_node = result.collider
+			print(hit_node)
+			# Example: spawn something as a child of the hit object
+			var decal = hole_scene.instantiate()
+			hit_node.add_child(decal)
+
+			decal.look_at(result.position + result.normal, Vector3.UP)
+			# place it at the hit point (in local coords of hit_node)
+			decal.global_position = result.position
 		
 		
 		
@@ -96,7 +122,6 @@ func _spawn_segment_at(z: float) -> void:
 	if seg is TrackSegment:
 		seg_len = (seg as TrackSegment).length  # tipado, sin Variant  //tomar valor de un valor de z
 	 # colocar centro	
-	print(_next_z)
 	_next_z += seg_len
 
 func _scroll_world(delta: float) -> void:
@@ -117,6 +142,5 @@ func _recycle_segments() -> void:
 func _ensure_filled_ahead() -> void:
 	# Mantén el “tapete” extendido por delante de la cámara
 	var target_front := camera_3d.global_transform.origin.z +spawn_ahead
-	print("spawn_ahead ", spawn_ahead, " ", target_front)
 	while _next_z + segments_root.global_transform.origin.z < target_front and _active.size() < pool_size:
 		_spawn_segment_at(_next_z + segments_root.global_transform.origin.z)
