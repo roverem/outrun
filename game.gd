@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var camera_3d: Camera3D = $"sedan-sports"/Camera3D
+@onready var camera_3d: Camera3D = %Camera3D
 @export var amplitude: float = 0.2  # distancia máxima hacia adelante/atrás
 @export var speed: float = 0.3      # velocidad de oscilación
 @onready var directional_light_3d: SpotLight3D = $DirectionalLight3D
