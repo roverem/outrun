@@ -38,8 +38,8 @@ func _process(delta: float) -> void:
 	var viewport_size = get_viewport().get_visible_rect().size
 	
 	var center = viewport_size / 2
-	debug_text.clear()
-	debug_text.add_text( "center " + str(center) )
+	#debug_text.clear()
+	#debug_text.add_text( "center " + str(center) )
 	
 	var x_dist = center.x - mouse_pos.x;
 	var y_dist = center.y - mouse_pos.y;
@@ -47,16 +47,16 @@ func _process(delta: float) -> void:
 	var horizontal_rate = x_dist / center.x;
 	var vertical_rate = y_dist / center.y;
 	
-	debug_text.add_text("\nRATE horizontal: " + str(horizontal_rate) + " vertical: " + str(vertical_rate) )
+	#debug_text.add_text("\nRATE horizontal: " + str(horizontal_rate) + " vertical: " + str(vertical_rate) )
 	
-	debug_text.add_text("\n base rotation x: " + str( rad_to_deg(base_rotation.x) ) + " y: " + str( rad_to_deg(base_rotation.y) ) )
+	#debug_text.add_text("\n base rotation x: " + str( rad_to_deg(base_rotation.x) ) + " y: " + str( rad_to_deg(base_rotation.y) ) )
 	
 	camera_3d.rotation.x = clamp(base_rotation.x + vertical_rate * mouse_sensitivity, deg_to_rad( vertical_min_angle), deg_to_rad( vertical_max_angle) )
 	camera_3d.rotation.y = clamp(base_rotation.y + horizontal_rate * mouse_sensitivity, deg_to_rad(horizontal_min_angle), deg_to_rad(horizontal_max_angle))
 	
-	debug_text.add_text("\n camera rotation horizontal" + str( rad_to_deg(camera_3d.rotation.y)) + " vertical: " + str(rad_to_deg(camera_3d.rotation.x)) )
-	debug_text.add_text("\n horizontal angle " + str( horizontal_min_angle) + " : " + str(  horizontal_max_angle ) )
-	debug_text.add_text("\n vertical angle " + str( vertical_min_angle) + " : " + str( vertical_max_angle  ) )
+	#debug_text.add_text("\n camera rotation horizontal" + str( rad_to_deg(camera_3d.rotation.y)) + " vertical: " + str(rad_to_deg(camera_3d.rotation.x)) )
+	#debug_text.add_text("\n horizontal angle " + str( horizontal_min_angle) + " : " + str(  horizontal_max_angle ) )
+	#debug_text.add_text("\n vertical angle " + str( vertical_min_angle) + " : " + str( vertical_max_angle  ) )
 	
 	#print(camera_3d.rotation)
 	#var mouse_pos = event.position
