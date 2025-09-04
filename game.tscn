@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=20 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://TrackSegment.tscn" id="2_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://bqrxhxeiwbi2m" path="res://Hole.tscn" id="3_hve3p"]
+[ext_resource type="PackedScene" uid="uid://cfycxrv44nhc6" path="res://TrackSegmentSpawner.tscn" id="3_iotsf"]
 [ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/3D/police.glb" id="4_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="5_ryrav"]
 [ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
@@ -45,6 +46,7 @@ vertical_min_angle = -14.65
 vertical_max_angle = 22.792
 mouse_sensitivity = 1.553
 segment_scene = ExtResource("2_j5wjh")
+spawner_segment_scene = ExtResource("3_iotsf")
 move_speed = 15.0
 hole_scene = ExtResource("3_hve3p")
 
@@ -118,7 +120,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
 visible = false
 mesh = SubResource("BoxMesh_eow3j")
 
-[node name="Segments" type="Node3D" parent="."]
-
 [node name="taxi" parent="." instance=ExtResource("10_hve3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24327, 0, 0.492166)
+
+[node name="MovingRoot" type="Node3D" parent="."]
+
+[node name="Segments" type="Node3D" parent="MovingRoot"]
+
+[node name="Enemies" type="Node3D" parent="MovingRoot"]

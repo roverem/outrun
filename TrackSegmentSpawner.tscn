@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfycxrv44nhc6"]
+
+[ext_resource type="Texture2D" uid="uid://btlkhkntrwxit" path="res://assets/3D/Textures/textura_asfalto.png" id="1_sdn0n"]
+[ext_resource type="Script" uid="uid://gw8hufogsdnf" path="res://track_segment_spawner.gd" id="1_y5apj"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_y5apj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5wjh"]
+albedo_color = Color(1, 0.317647, 1, 1)
+albedo_texture = ExtResource("1_sdn0n")
+
+[sub_resource type="BoxMesh" id="BoxMesh_pldww"]
+material = SubResource("StandardMaterial3D_j5wjh")
+size = Vector3(16, 0.25, 5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jewhn"]
+data = PackedVector3Array(-8, 0.125, 2.5, 8, 0.125, 2.5, -8, -0.125, 2.5, 8, 0.125, 2.5, 8, -0.125, 2.5, -8, -0.125, 2.5, 8, 0.125, -2.5, -8, 0.125, -2.5, 8, -0.125, -2.5, -8, 0.125, -2.5, -8, -0.125, -2.5, 8, -0.125, -2.5, 8, 0.125, 2.5, 8, 0.125, -2.5, 8, -0.125, 2.5, 8, 0.125, -2.5, 8, -0.125, -2.5, 8, -0.125, 2.5, -8, 0.125, -2.5, -8, 0.125, 2.5, -8, -0.125, -2.5, -8, 0.125, 2.5, -8, -0.125, 2.5, -8, -0.125, -2.5, 8, 0.125, 2.5, -8, 0.125, 2.5, 8, 0.125, -2.5, -8, 0.125, 2.5, -8, 0.125, -2.5, 8, 0.125, -2.5, -8, -0.125, 2.5, 8, -0.125, 2.5, -8, -0.125, -2.5, 8, -0.125, 2.5, 8, -0.125, -2.5, -8, -0.125, -2.5)
+
+[node name="TrackSegmentSpawner" type="Node3D"]
+script = ExtResource("1_y5apj")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_y5apj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268546, -1.23579, 0.62258)
+mesh = SubResource("BoxMesh_pldww")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jewhn")
+
+[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.72535, 1.23579, 0.0332673)
+
+[node name="Marker3D2" type="Marker3D" parent="NavigationRegion3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.46854, 1.23579, 0.0332896)
