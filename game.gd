@@ -37,8 +37,6 @@ func _process(delta: float) -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
 	var viewport_size = get_viewport().get_visible_rect().size
 	
-	camera_3d.far = 100000
-	
 	var center = viewport_size / 2
 	debug_text.clear()
 	debug_text.add_text( "center " + str(center) )

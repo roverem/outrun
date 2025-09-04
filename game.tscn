@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=22 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://TrackSegment.tscn" id="2_j5wjh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqrxhxeiwbi2m" path="res://Hole.tscn" id="3_hve3p"]
 [ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/3D/police.glb" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://drlolvaojil36" path="res://player.gd" id="4_iotsf"]
+[ext_resource type="Script" uid="uid://danclwtqxp5qd" path="res://camera_3d.gd" id="4_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="5_ryrav"]
 [ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
 [ext_resource type="Texture2D" uid="uid://bwoocqosrk5if" path="res://assets/2D/shotgun.png" id="6_vef74"]
@@ -52,11 +53,13 @@ segment_scene = ExtResource("2_j5wjh")
 move_speed = 15.0
 hole_scene = ExtResource("3_hve3p")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("car")]
 unique_name_in_owner = true
 transform = Transform3D(-1, -3.55271e-14, -8.74228e-08, -3.90502e-08, 0.894693, 0.446682, 7.82165e-08, 0.446682, -0.894693, 0, 2.21952, -2.352)
 current = true
 fov = 80.5
+script = ExtResource("4_lc2xo")
+car = NodePath("../Player")
 
 [node name="Sprite3D" type="Sprite3D" parent="Camera3D"]
 transform = Transform3D(0.14, 0, 1.06581e-14, -2.22045e-15, 0.14, -7.45058e-09, -1.06581e-14, 7.45058e-09, 0.14, 6.65315e-08, -0.507165, -0.761031)
@@ -64,8 +67,6 @@ texture = ExtResource("6_vef74")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("4_iotsf")
-tilt_angle = 60.0
-tilt_speed = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
 layer = 10
