@@ -15,6 +15,10 @@ var base_position: Vector3
 var vertical_velocity: float = 0.0
 var is_jumping: bool = false
 
+var jumping_yaw: float = 0
+var is_jump_moving:bool = false
+var jumping_direction:float = 0
+
 @onready var debug_text: RichTextLabel = %DebugText
 
 func _ready():
@@ -22,10 +26,18 @@ func _ready():
 
 func _process(delta):
 	var input_dir := 0.0
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") and not is_jumping:
 		input_dir -= 1
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left") and not is_jumping:
 		input_dir += 1
+	
+	if is_jump_moving:
+		input_dir = jumping_direction * abs(jumping_yaw / yaw_angle)
+		
+	debug_text.clear()
+	debug_text.add_text( "is_jump_moving " + str(is_jump_moving) + "\n" )
+	debug_text.add_text( str( jumping_yaw / yaw_angle) + "\n" )
+	debug_text.add_text( str( jumping_yaw ) )
 	
 	# Move left/right
 	global_position.x = clamp(global_position.x + input_dir * steer_speed * delta, -max_steer, max_steer)
@@ -35,15 +47,20 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_up") and not is_jumping:
 		vertical_velocity = jump_speed
 		is_jumping = true
+		jumping_yaw = rotation_degrees.y
+		if jumping_yaw != 0:
+			is_jump_moving = true
+			jumping_direction = input_dir 
 
 	if is_jumping:
 		global_position.y += vertical_velocity * delta
 		vertical_velocity -= gravity * delta  # apply gravity
-
+		 
 		if global_position.y <= base_position.y:
 			global_position.y = base_position.y
 			vertical_velocity = 0.0
 			is_jumping = false
+			is_jump_moving = false
 
 	# Stop logic (down key resets to base position instantly)
 	if Input.is_action_just_pressed("ui_down"):
@@ -55,8 +72,10 @@ func _process(delta):
 	var target_yaw = input_dir * yaw_angle             # Y axis slight twist
 	var target_pitch = -abs(input_dir) * pitch_angle   # X axis dip
 	
-	debug_text.clear()
-	debug_text.add_text( str(vertical_velocity))
+	if is_jumping:
+		target_yaw = jumping_yaw 
+	
+	
 	
 	if is_jumping:
 		if vertical_velocity > 0:
@@ -65,5 +84,5 @@ func _process(delta):
 			target_pitch = pitch_angle
 
 	rotation_degrees.z = lerp(rotation_degrees.z, target_roll, delta * tilt_speed)
-	rotation_degrees.y = lerp(rotation_degrees.y, target_yaw, delta * (tilt_speed * 0.5))
+	rotation_degrees.y = lerp(rotation_degrees.y, target_yaw, delta * (tilt_speed * 0.35))
 	rotation_degrees.x = lerp(rotation_degrees.x, target_pitch, delta * (tilt_speed * 0.5))
