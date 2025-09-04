@@ -114,6 +114,10 @@ spot_range = 4.68257
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119324, 0.443685, 0.180054)
 shape = SubResource("BoxShape3D_lc2xo")
 
+[node name="JustLandedTimer" type="Timer" parent="Player"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)
 
@@ -140,3 +144,5 @@ mesh = SubResource("BoxMesh_eow3j")
 
 [node name="taxi" parent="." instance=ExtResource("10_hve3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24327, 0, 0.492166)
+
+[connection signal="timeout" from="Player/JustLandedTimer" to="Player" method="_on_just_landed_timer_timeout"]

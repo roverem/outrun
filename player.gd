@@ -18,8 +18,10 @@ var is_jumping: bool = false
 var jumping_yaw: float = 0
 var is_jump_moving:bool = false
 var jumping_direction:float = 0
+var just_landed = false
 
 @onready var debug_text: RichTextLabel = %DebugText
+@onready var just_landed_timer:Timer = %JustLandedTimer
 
 func _ready():
 	base_position = global_position	
@@ -42,6 +44,11 @@ func _process(delta):
 	# Move left/right
 	global_position.x = clamp(global_position.x + input_dir * steer_speed * delta, -max_steer, max_steer)
 	global_position.z = base_position.z
+	
+	
+	
+	# DESPUES DE SALTAR DISPARAR UN TIMER PARA EVITAR QUE PUEDAS DOBLAR HASTA DESPUES
+	
 
 	# Jump logic
 	if Input.is_action_just_pressed("ui_up") and not is_jumping:
@@ -61,6 +68,7 @@ func _process(delta):
 			vertical_velocity = 0.0
 			is_jumping = false
 			is_jump_moving = false
+			
 
 	# Stop logic (down key resets to base position instantly)
 	if Input.is_action_just_pressed("ui_down"):
@@ -86,3 +94,7 @@ func _process(delta):
 	rotation_degrees.z = lerp(rotation_degrees.z, target_roll, delta * tilt_speed)
 	rotation_degrees.y = lerp(rotation_degrees.y, target_yaw, delta * (tilt_speed * 0.35))
 	rotation_degrees.x = lerp(rotation_degrees.x, target_pitch, delta * (tilt_speed * 0.5))
+
+
+func _on_just_landed_timer_timeout() -> void:
+	pass # Replace with function body.
