@@ -42,24 +42,34 @@ size = Vector3(10, 5, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e2o6t")
-amplitude = 0.1
-speed = 2.6
-horizontal_min_angle = -212.208
-horizontal_max_angle = -155.584
-vertical_min_angle = -34.37
-vertical_max_angle = 22.792
-mouse_sensitivity = 1.553
 segment_scene = ExtResource("2_j5wjh")
 move_speed = 15.0
+pool_size = null
+segment_length = null
+spawn_ahead = null
 hole_scene = ExtResource("3_hve3p")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("car")]
 unique_name_in_owner = true
-transform = Transform3D(-1, -3.55271e-14, -8.74228e-08, -3.90502e-08, 0.894693, 0.446682, 7.82165e-08, 0.446682, -0.894693, 0, 3.28858, -3.02776)
+transform = Transform3D(-0.25114, 0.432366, -0.866019, -3.90502e-08, 0.894693, 0.446682, 0.96795, 0.11218, -0.224693, 0, 3.28858, -3.02776)
 current = true
 fov = 80.5
 script = ExtResource("4_lc2xo")
+amplitude = 1.0
+speed = 2.6
+horizontal_min_angle = -260.0
+horizontal_max_angle = -110.0
+vertical_min_angle = -80.0
+vertical_max_angle = 20.0
+mouse_sensitivity = 1.0
 car = NodePath("../Player")
+
+[node name="DirectionalLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999391, -0.0348995, 0, 0.0348995, 0.999391, 0, 0, 0)
+light_energy = 4.232
+distance_fade_enabled = true
+spot_range = 18.9476
+spot_angle = 7.05594
 
 [node name="Sprite3D" type="Sprite3D" parent="Camera3D"]
 transform = Transform3D(0.14, 0, 1.06581e-14, -2.22045e-15, 0.14, -7.45058e-09, -1.06581e-14, 7.45058e-09, 0.14, 6.65315e-08, -0.507165, -0.761031)
@@ -92,7 +102,7 @@ script = ExtResource("6_ryrav")
 [node name="DebugText" type="RichTextLabel" parent="Player/CanvasLayer"]
 unique_name_in_owner = true
 offset_right = 767.0
-offset_bottom = 81.0
+offset_bottom = 145.0
 scroll_active = false
 
 [node name="sedan-sports" parent="Player" instance=ExtResource("3_feb5d")]
@@ -120,13 +130,6 @@ one_shot = true
 
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)
-
-[node name="DirectionalLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-0.999796, 0, -0.0201921, 0, 1, 0, 0.0201921, 0, -0.999796, 0, 2.70507, -1.47715)
-light_energy = 4.232
-distance_fade_enabled = true
-spot_range = 18.9476
-spot_angle = 7.05594
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j5wjh")

@@ -35,11 +35,6 @@ func _process(delta):
 	
 	if is_jump_moving:
 		input_dir = jumping_direction * abs(jumping_yaw / yaw_angle)
-		
-	debug_text.clear()
-	debug_text.add_text( "is_jump_moving " + str(is_jump_moving) + "\n" )
-	debug_text.add_text( str( jumping_yaw / yaw_angle) + "\n" )
-	debug_text.add_text( str( jumping_yaw ) )
 	
 	# Move left/right
 	global_position.x = clamp(global_position.x + input_dir * steer_speed * delta, -max_steer, max_steer)
