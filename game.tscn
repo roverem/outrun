@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=23 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://TrackSegment.tscn" id="2_j5wjh"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cksoxnbpj1gxe" path="res://assets/3D/Textures/textura_pared.png" id="8_j5wjh"]
 [ext_resource type="Texture2D" uid="uid://c52hoc7ny6bmk" path="res://assets/3D/Skyboxes/Skyboxes/AllSkyFree_Sky_OvercastLow_Equirect.png" id="9_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bgsrm00cjg8rv" path="res://taxi.tscn" id="10_hve3p"]
+[ext_resource type="Script" uid="uid://cbm1jhi7eykes" path="res://track.gd" id="14_215e1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
 atlas = ExtResource("5_ryrav")
@@ -55,13 +56,12 @@ transform = Transform3D(-0.25114, 0.432366, -0.866019, -3.90502e-08, 0.894693, 0
 current = true
 fov = 80.5
 script = ExtResource("4_lc2xo")
-amplitude = 1.0
-speed = 2.6
+speed = 1.0
 horizontal_min_angle = -260.0
 horizontal_max_angle = -110.0
 vertical_min_angle = -80.0
 vertical_max_angle = 20.0
-mouse_sensitivity = 1.0
+mouse_sensitivity = 0.2
 car = NodePath("../Player")
 
 [node name="DirectionalLight3D" type="SpotLight3D" parent="Camera3D"]
@@ -131,6 +131,9 @@ one_shot = true
 [node name="police" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)
 
+[node name="taxi" parent="." instance=ExtResource("10_hve3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24327, 0, 0.492166)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j5wjh")
 
@@ -140,12 +143,9 @@ navigation_mesh = SubResource("NavigationMesh_ryrav")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
-visible = false
 mesh = SubResource("BoxMesh_eow3j")
 
-[node name="Segments" type="Node3D" parent="."]
-
-[node name="taxi" parent="." instance=ExtResource("10_hve3p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24327, 0, 0.492166)
+[node name="Track" type="Node3D" parent="."]
+script = ExtResource("14_215e1")
 
 [connection signal="timeout" from="Player/JustLandedTimer" to="Player" method="_on_just_landed_timer_timeout"]

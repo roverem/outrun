@@ -6,7 +6,7 @@ extends Camera3D
 @export_range(-360, 360) var horizontal_max_angle
 @export_range(-360, 360) var vertical_min_angle
 @export_range(-360, 360) var vertical_max_angle
-@export_range(0.2, 200) var mouse_sensitivity:float
+@export_range(0.2, 2) var mouse_sensitivity:float
 @onready var directional_light_3d: SpotLight3D = $DirectionalLight3D
 
 @export var car: Node3D
