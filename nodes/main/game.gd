@@ -9,7 +9,7 @@ extends Node3D
 @export var spawn_ahead: float = 250.0          # hasta dónde “llenar” por delante
 @export var hole_scene:PackedScene
 
-@onready var segments_root: Node3D = $Segments
+@onready var segments_root: Node3D = $Track
 @onready var camera_3d:Camera3D = %Camera3D
 var angle_range:float = 15.0
 
@@ -49,9 +49,10 @@ func _spawn_segment_at(z: float) -> void:
 	_next_z += seg_len
 
 func _scroll_world(delta: float) -> void:
+	pass
 	# Mueve TODAS las piezas hacia -Z (el auto “parece” ir hacia +Z)
 	# Opción A: mover el contenedor entero (barato):
-	segments_root.translate(Vector3(0, 0, -move_speed * delta))
+	#segments_root.translate(Vector3(0, 0, -move_speed * delta))
 	# (Si tenés elementos que no deben moverse, no los pongas bajo "Segments")
 
 func _recycle_segments() -> void:

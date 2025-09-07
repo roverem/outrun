@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://bwoocqosrk5if" path="res://assets/2D/shotgun.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="3_2hs0m"]
-[ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="4_1jxqw"]
+[ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://nodes/main/crosshair.gd" id="4_1jxqw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnlqt"]
 size = Vector3(1.41557, 0.498882, 2.3949)

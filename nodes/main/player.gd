@@ -1,4 +1,5 @@
-extends Node3D  # or CharacterBody3D if you want floor detection later
+class_name Player
+extends CharacterBody3D
 
 @export var steer_speed: float = 3.5
 @export var max_steer: float = 6.5
@@ -10,6 +11,12 @@ extends Node3D  # or CharacterBody3D if you want floor detection later
 @export var jump_height: float = 2.0   # how high the car jumps
 @export var jump_speed: float = 5.0    # how fast it goes up
 @export var gravity: float = 9.8       # how fast it falls down
+
+var scroll_speed: float = 0.0        		# current speed
+@export var acceleration: float = 5.0        # how fast it accelerates with UP
+@export var deceleration: float = 3.0        # how fast it slows down when no input
+@export var max_speed: float = 20.0          # cap the speed
+@export var min_speed: float = 2
 
 var base_position: Vector3
 var vertical_velocity: float = 0.0
@@ -24,6 +31,7 @@ var just_landed = false
 @onready var just_landed_timer:Timer = %JustLandedTimer
 
 func _ready():
+	Global.PLAYER_CAR = self
 	base_position = global_position	
 
 func _process(delta):
@@ -40,13 +48,20 @@ func _process(delta):
 	global_position.x = clamp(global_position.x + input_dir * steer_speed * delta, -max_steer, max_steer)
 	global_position.z = base_position.z
 	
-	
-	
-	# DESPUES DE SALTAR DISPARAR UN TIMER PARA EVITAR QUE PUEDAS DOBLAR HASTA DESPUES
-	
+	# --- Acceleration ---
+	if Input.is_action_pressed("ui_up"):
+		scroll_speed += acceleration * delta
+	else:
+		# --- Natural deceleration ---
+		scroll_speed -= deceleration * delta
 
+	# clamp between 0 and max_speed
+	scroll_speed = clamp(scroll_speed, min_speed, max_speed)
+	Global.PLAYER_SPEED = scroll_speed
+
+	# DESPUES DE SALTAR DISPARAR UN TIMER PARA EVITAR QUE PUEDAS DOBLAR HASTA DESPUES
 	# Jump logic
-	if Input.is_action_just_pressed("ui_up") and not is_jumping:
+	if Input.is_action_just_pressed("ui_accept") and not is_jumping:
 		vertical_velocity = jump_speed
 		is_jumping = true
 		jumping_yaw = rotation_degrees.y
