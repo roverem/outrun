@@ -1,0 +1,152 @@
+[gd_scene load_steps=20 format=3 uid="uid://c3wmweemb4l6i"]
+
+[ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://nodes/main/game.gd" id="1_fdkpn"]
+[ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://nodes/segments/TrackSegment.tscn" id="2_cheni"]
+[ext_resource type="PackedScene" uid="uid://bqrxhxeiwbi2m" path="res://nodes/Hole.tscn" id="3_wc8tv"]
+[ext_resource type="Script" uid="uid://danclwtqxp5qd" path="res://nodes/main/camera_3d.gd" id="4_w75kh"]
+[ext_resource type="Texture2D" uid="uid://bwoocqosrk5if" path="res://assets/2D/shotgun.png" id="5_o8i0j"]
+[ext_resource type="Script" uid="uid://drlolvaojil36" path="res://nodes/main/player.gd" id="6_kabey"]
+[ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="7_asguh"]
+[ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://nodes/main/crosshair.gd" id="8_vpev4"]
+[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="9_0l0dt"]
+[ext_resource type="Texture2D" uid="uid://c52hoc7ny6bmk" path="res://assets/3D/Skyboxes/Skyboxes/AllSkyFree_Sky_OvercastLow_Equirect.png" id="10_iiqvn"]
+[ext_resource type="Script" uid="uid://cbm1jhi7eykes" path="res://nodes/main/track.gd" id="11_mr67d"]
+[ext_resource type="PackedScene" uid="uid://bgsrm00cjg8rv" path="res://nodes/npc/taxi.tscn" id="12_kymbj"]
+[ext_resource type="Script" uid="uid://dkammd126qk4e" path="res://nodes/main/spawner.gd" id="14_2xhlt"]
+[ext_resource type="PackedScene" uid="uid://bu0w2ququce4n" path="res://nodes/npc/police.tscn" id="14_fdkpn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
+atlas = ExtResource("7_asguh")
+region = Rect2(208, 106, 64, 64)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lc2xo"]
+size = Vector3(1.47009, 0.658081, 2.4397)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mfdv2"]
+panorama = ExtResource("10_iiqvn")
+
+[sub_resource type="Sky" id="Sky_eow3j"]
+sky_material = SubResource("PanoramaSkyMaterial_mfdv2")
+
+[sub_resource type="Environment" id="Environment_j5wjh"]
+background_mode = 2
+sky = SubResource("Sky_eow3j")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_fdkpn")
+segment_scene = ExtResource("2_cheni")
+move_speed = 15.0
+hole_scene = ExtResource("3_wc8tv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.25114, 0.432366, -0.866019, -3.90502e-08, 0.894693, 0.446682, 0.96795, 0.11218, -0.224693, 0, 3.28858, -3.02776)
+current = true
+fov = 80.5
+script = ExtResource("4_w75kh")
+
+[node name="DirectionalLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999391, -0.0348995, 0, 0.0348995, 0.999391, 0, 0, 0)
+light_energy = 4.232
+distance_fade_enabled = true
+spot_range = 18.9476
+spot_angle = 7.05594
+
+[node name="Sprite3D" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(0.14, 0, 1.06581e-14, -2.22045e-15, 0.14, -7.45058e-09, -1.06581e-14, 7.45058e-09, 0.14, 6.65315e-08, -0.507165, -0.761031)
+texture = ExtResource("5_o8i0j")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("6_kabey")
+tilt_angle = 1.445
+tilt_speed = 12.0
+jump_speed = 2.745
+acceleration = 6.0
+deceleration = 10.0
+min_speed = 10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+layer = 10
+
+[node name="TextureRect" type="TextureRect" parent="Player/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -512.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ryrav")
+script = ExtResource("8_vpev4")
+
+[node name="DebugText" type="RichTextLabel" parent="Player/CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 767.0
+offset_bottom = 145.0
+scroll_active = false
+
+[node name="sedan-sports" parent="Player" instance=ExtResource("9_0l0dt")]
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Player/sedan-sports"]
+transform = Transform3D(-0.999778, 0, 0.0210819, 0, 1, 0, -0.0210819, 0, -0.999778, -0.390696, 0.69936, 1.09439)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Player/sedan-sports"]
+transform = Transform3D(-0.99992, 0, -0.0126184, 0, 1, 0, 0.0126184, 0, -0.99992, 0.402436, 0.69936, 1.11244)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Player/sedan-sports"]
+transform = Transform3D(-0.943344, 0, -0.331816, -0.127344, 0.923425, 0.362036, 0.306407, 0.38378, -0.871108, -0.390696, 1.5657, -2.23555)
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Player/sedan-sports"]
+transform = Transform3D(-0.844973, 0, 0.53481, 0.207669, 0.921531, 0.328106, -0.492844, 0.388304, -0.778669, 0.402436, 1.19712, -2.47349)
+spot_range = 4.68257
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119324, 0.443685, 0.180054)
+shape = SubResource("BoxShape3D_lc2xo")
+
+[node name="JustLandedTimer" type="Timer" parent="Player"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j5wjh")
+
+[node name="Track" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_mr67d")
+
+[node name="lane1" type="Marker3D" parent="Track" groups=["NoScroll"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6619, 0, 37.3927)
+
+[node name="lane2" type="Marker3D" parent="Track" groups=["NoScroll"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07988, 0, 37.3927)
+
+[node name="lane3" type="Marker3D" parent="Track" groups=["NoScroll"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559977, 0, 37.3927)
+
+[node name="lane4" type="Marker3D" parent="Track" groups=["NoScroll"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02787, 0, 37.3927)
+
+[node name="lane5" type="Marker3D" parent="Track" groups=["NoScroll"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.71692, 0, 37.3927)
+
+[node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("track")]
+script = ExtResource("14_2xhlt")
+segments = Array[PackedScene]([ExtResource("12_kymbj"), ExtResource("14_fdkpn")])
+track = NodePath("../Track")
+random_amounts = Array[float]([3.0, 3.0, 4.0, 1.0, 2.0])
+
+[node name="Timer" type="Timer" parent="Spawner"]
+autostart = true
+
+[connection signal="timeout" from="Player/JustLandedTimer" to="Player" method="_on_just_landed_timer_timeout"]
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]

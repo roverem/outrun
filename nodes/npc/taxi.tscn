@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgsrm00cjg8rv"]
+
+[ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/taxi.glb" id="1_nxq8a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4q2lu"]
+size = Vector3(1.3877, 1.64929, 1.79834)
+
+[node name="taxi" instance=ExtResource("1_nxq8a")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.025)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.139172, 0.324646, -0.157123)
+shape = SubResource("BoxShape3D_4q2lu")

@@ -1,0 +1,138 @@
+[gd_scene load_steps=21 format=3 uid="uid://c3wmweemb4l6i"]
+
+[ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://TrackSegment.tscn" id="2_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://bqrxhxeiwbi2m" path="res://Hole.tscn" id="3_hve3p"]
+[ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/3D/police.glb" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://drlolvaojil36" path="res://player.gd" id="4_iotsf"]
+[ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="5_ryrav"]
+[ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://crosshair.gd" id="6_ryrav"]
+[ext_resource type="Texture2D" uid="uid://bwoocqosrk5if" path="res://assets/2D/shotgun.png" id="6_vef74"]
+[ext_resource type="Texture2D" uid="uid://cksoxnbpj1gxe" path="res://assets/3D/Textures/textura_pared.png" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://c52hoc7ny6bmk" path="res://assets/3D/Skyboxes/Skyboxes/AllSkyFree_Sky_OvercastLow_Equirect.png" id="9_hve3p"]
+[ext_resource type="PackedScene" uid="uid://bgsrm00cjg8rv" path="res://taxi.tscn" id="10_hve3p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
+atlas = ExtResource("5_ryrav")
+region = Rect2(208, 106, 64, 64)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lc2xo"]
+size = Vector3(1.47009, 0.658081, 2.4397)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mfdv2"]
+panorama = ExtResource("9_hve3p")
+
+[sub_resource type="Sky" id="Sky_eow3j"]
+sky_material = SubResource("PanoramaSkyMaterial_mfdv2")
+
+[sub_resource type="Environment" id="Environment_j5wjh"]
+background_mode = 2
+sky = SubResource("Sky_eow3j")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ryrav"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eow3j"]
+albedo_texture = ExtResource("8_j5wjh")
+
+[sub_resource type="BoxMesh" id="BoxMesh_eow3j"]
+material = SubResource("StandardMaterial3D_eow3j")
+size = Vector3(10, 5, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_e2o6t")
+amplitude = 0.1
+speed = 2.6
+horizontal_min_angle = -212.208
+horizontal_max_angle = -155.584
+vertical_min_angle = -14.65
+vertical_max_angle = 22.792
+mouse_sensitivity = 1.553
+segment_scene = ExtResource("2_j5wjh")
+move_speed = 15.0
+hole_scene = ExtResource("3_hve3p")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, -3.55271e-14, -8.74228e-08, -3.90502e-08, 0.894693, 0.446682, 7.82165e-08, 0.446682, -0.894693, 0, 2.21952, -2.352)
+current = true
+fov = 80.5
+
+[node name="Sprite3D" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(0.14, 0, 1.06581e-14, -2.22045e-15, 0.14, -7.45058e-09, -1.06581e-14, 7.45058e-09, 0.14, 6.65315e-08, -0.507165, -0.761031)
+texture = ExtResource("6_vef74")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("4_iotsf")
+tilt_angle = 60.0
+tilt_speed = 10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+layer = 10
+
+[node name="TextureRect" type="TextureRect" parent="Player/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -512.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ryrav")
+script = ExtResource("6_ryrav")
+
+[node name="DebugText" type="RichTextLabel" parent="Player/CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 138.0
+offset_bottom = 81.0
+scroll_active = false
+
+[node name="sedan-sports" parent="Player" instance=ExtResource("3_feb5d")]
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Player/sedan-sports"]
+transform = Transform3D(-0.999778, 0, 0.0210819, 0, 1, 0, -0.0210819, 0, -0.999778, -0.390696, 0.69936, 1.09439)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Player/sedan-sports"]
+transform = Transform3D(-0.99992, 0, -0.0126184, 0, 1, 0, 0.0126184, 0, -0.99992, 0.402436, 0.69936, 1.11244)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Player/sedan-sports"]
+transform = Transform3D(-0.943344, 0, -0.331816, -0.127344, 0.923425, 0.362036, 0.306407, 0.38378, -0.871108, -0.390696, 1.5657, -2.23555)
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Player/sedan-sports"]
+transform = Transform3D(-0.844973, 0, 0.53481, 0.207669, 0.921531, 0.328106, -0.492844, 0.388304, -0.778669, 0.402436, 1.19712, -2.47349)
+spot_range = 4.68257
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119324, 0.443685, 0.180054)
+shape = SubResource("BoxShape3D_lc2xo")
+
+[node name="police" parent="." instance=ExtResource("4_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60379, 0, 2.36422)
+
+[node name="DirectionalLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.999796, 0, -0.0201921, 0, 1, 0, 0.0201921, 0, -0.999796, 0, 2.70507, -1.47715)
+light_energy = 4.232
+distance_fade_enabled = true
+spot_range = 18.9476
+spot_angle = 7.05594
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j5wjh")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+visible = false
+navigation_mesh = SubResource("NavigationMesh_ryrav")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
+visible = false
+mesh = SubResource("BoxMesh_eow3j")
+
+[node name="Segments" type="Node3D" parent="."]
+
+[node name="taxi" parent="." instance=ExtResource("10_hve3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24327, 0, 0.492166)
