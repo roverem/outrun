@@ -10,12 +10,17 @@ extends Camera3D
 @onready var directional_light_3d: SpotLight3D = $DirectionalLight3D
 @export var align_speed: float = 2.0   # how fast the camera recenters
 
+@onready var flare:Sprite3D = %flare;
+@onready var flare_delay:Timer = %flare_delay
+@onready var can_shoot_delay:Timer = %can_shoot
+@onready var shotgun:Sprite3D = %shotgun
 
-
-
+var can_shoot:bool = true
 var base_position: Vector3
 var base_rotation: Vector3
 var car: Node3D
+
+var shotgun_base_position
 
 var yaw:float = 0.0
 var pitch:float = 0.0
@@ -24,7 +29,14 @@ func _ready():
 	base_position = global_position
 	base_rotation = global_rotation_degrees
 	
+	shotgun_base_position = shotgun.position
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	can_shoot_delay.timeout.connect(_reset_can_shoot)
+	flare_delay.timeout.connect(_on_timer_timeout)
+	
+	
 
 func _process(delta: float) -> void:
 	if car == null:
@@ -38,6 +50,7 @@ func _process(delta: float) -> void:
 
 	# Smoothly move toward target position
 	global_position.x = lerp(global_position.x, target_pos.x, delta * align_speed)
+	
 	
 	
 func _unhandled_input(event):
@@ -58,6 +71,9 @@ func _unhandled_input(event):
 	#Global.DEBUG_TEXT.add_text(str(yaw))
 
 	if event is InputEventMouseButton and event.pressed:
+		if not can_shoot:
+			return
+			
 		var mouse_pos = event.position
 		var from = project_ray_origin(mouse_pos)
 		var to = from + project_ray_normal(mouse_pos) * 5000.0
@@ -75,6 +91,19 @@ func _unhandled_input(event):
 
 		#print(result)
 		
+		flare_delay.start()
+		
+		flare.visible = true
+		flare_delay.start()
+		
+		
+		can_shoot = false
+		can_shoot_delay.start()
+		
+		animateShoot()
+		
+		flare.dissapear()
+		
 		if result:
 			var hit_node = result.collider
 			if hit_node is Player:
@@ -91,4 +120,13 @@ func _unhandled_input(event):
 			# place it at the hit point (in local coords of hit_node)
 			#decal.global_position = result.position
 		
-		
+func animateShoot():
+	var tween := create_tween()
+	tween.tween_property(shotgun, "position", shotgun_base_position + Vector3(0, -0.2, 0), 0.2)
+	tween.tween_property(shotgun, "position", shotgun_base_position, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+func _on_timer_timeout():
+	flare.visible = false
+
+func _reset_can_shoot():
+	can_shoot = true
