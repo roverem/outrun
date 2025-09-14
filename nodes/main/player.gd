@@ -29,10 +29,43 @@ var just_landed = false
 
 @onready var debug_text: RichTextLabel = %DebugText
 @onready var just_landed_timer:Timer = %JustLandedTimer
+@onready var detection_area:Area3D = $Area3D
 
 func _ready():
 	Global.PLAYER_CAR = self
 	base_position = global_position	
+	
+	detection_area.body_entered.connect(_on_body_entered)
+	
+func _on_body_entered(body):
+	print("Collided with: ", body)
+	if body is StaticBody3D or body is CharacterBody3D:
+		_resolve_collision(body)
+		
+func _resolve_collision(body):
+	var aabb_player = detection_area.get_child(0).shape.get_debug_mesh().get_aabb()
+	aabb_player.position += global_transform.origin
+	
+	var aabb_body = body.get_aabb() if body.has_method("get_aabb") else null
+	if aabb_body == null:
+		return
+
+	if aabb_player.intersects(aabb_body):
+		# Compute center-to-center vector
+		var direction = (global_transform.origin - body.global_transform.origin).normalized()
+		var overlap = 0.5  # <-- fudge factor (no depth from Area3D directly)
+
+		var correction = direction * overlap
+		_tween_correction(self, correction)
+		_tween_correction(body, -correction)
+
+func _tween_correction(target: Node3D, offset: Vector3) -> void:
+	var tween = create_tween()
+	tween.tween_property(
+		target, "position", target.position + offset, 0.2
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+
 
 func _process(delta):
 	var input_dir := 0.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgsrm00cjg8rv"]
 
-[ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/taxi.glb" id="1_nxq8a"]
+[ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/npc/taxi.glb" id="1_nxq8a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4q2lu"]
 size = Vector3(1.3877, 1.64929, 1.79834)

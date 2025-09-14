@@ -1,11 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bu0w2ququce4n"]
 
-[ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/3D/police.glb" id="1_bg5ao"]
+[ext_resource type="PackedScene" uid="uid://1xpo6txat4l6" path="res://assets/3D/npc/police.glb" id="1_bg5ao"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bg5ao"]
 size = Vector3(1, 1.60938, 2.63464)
 
 [node name="police" instance=ExtResource("1_bg5ao")]
+metadata/velocity = 22.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.025)

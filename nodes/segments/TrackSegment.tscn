@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b4khraqvy6p6d"]
 
-[ext_resource type="Texture2D" uid="uid://btlkhkntrwxit" path="res://assets/3D/Textures/textura_asfalto.png" id="1_4eb0k"]
+[ext_resource type="Texture2D" uid="uid://btlkhkntrwxit" path="res://assets/3D/npc/Textures/textura_asfalto.png" id="1_4eb0k"]
 [ext_resource type="Script" uid="uid://br50it5o46rug" path="res://nodes/segments/track_segment.gd" id="1_x3oc1"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x3oc1"]

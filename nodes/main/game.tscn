@@ -1,19 +1,25 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=24 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://nodes/main/game.gd" id="1_fdkpn"]
 [ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://nodes/segments/TrackSegment.tscn" id="2_cheni"]
 [ext_resource type="PackedScene" uid="uid://bqrxhxeiwbi2m" path="res://nodes/Hole.tscn" id="3_wc8tv"]
 [ext_resource type="Script" uid="uid://danclwtqxp5qd" path="res://nodes/main/camera_3d.gd" id="4_w75kh"]
 [ext_resource type="Texture2D" uid="uid://bwoocqosrk5if" path="res://assets/2D/shotgun.png" id="5_o8i0j"]
+[ext_resource type="Texture2D" uid="uid://cgq1sqc0xnfv7" path="res://assets/2D/glow_shotgun.png" id="6_cheni"]
 [ext_resource type="Script" uid="uid://drlolvaojil36" path="res://nodes/main/player.gd" id="6_kabey"]
 [ext_resource type="Texture2D" uid="uid://d3ggpwlb5ulno" path="res://assets/2D/Crosshair Spritesheet 1.png" id="7_asguh"]
+[ext_resource type="Script" uid="uid://cbj3cqlat538s" path="res://nodes/main/flare.gd" id="7_wc8tv"]
 [ext_resource type="Script" uid="uid://bkmoav7beqep5" path="res://nodes/main/crosshair.gd" id="8_vpev4"]
-[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/sedan-sports.glb" id="9_0l0dt"]
+[ext_resource type="PackedScene" uid="uid://usxntfcawidv" path="res://assets/3D/npc/sedan-sports.glb" id="9_0l0dt"]
 [ext_resource type="Texture2D" uid="uid://c52hoc7ny6bmk" path="res://assets/3D/Skyboxes/Skyboxes/AllSkyFree_Sky_OvercastLow_Equirect.png" id="10_iiqvn"]
 [ext_resource type="Script" uid="uid://cbm1jhi7eykes" path="res://nodes/main/track.gd" id="11_mr67d"]
 [ext_resource type="PackedScene" uid="uid://bgsrm00cjg8rv" path="res://nodes/npc/taxi.tscn" id="12_kymbj"]
 [ext_resource type="Script" uid="uid://dkammd126qk4e" path="res://nodes/main/spawner.gd" id="14_2xhlt"]
 [ext_resource type="PackedScene" uid="uid://bu0w2ququce4n" path="res://nodes/npc/police.tscn" id="14_fdkpn"]
+[ext_resource type="PackedScene" uid="uid://dab73a6d3a2sm" path="res://nodes/npc/drone.tscn" id="17_w75kh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w75kh"]
+size = Vector3(1.22986, 0.960571, 2.5376)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
 atlas = ExtResource("7_asguh")
@@ -40,7 +46,7 @@ hole_scene = ExtResource("3_wc8tv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-0.25114, 0.432366, -0.866019, -3.90502e-08, 0.894693, 0.446682, 0.96795, 0.11218, -0.224693, 0, 3.28858, -3.02776)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28858, -3.02776)
 current = true
 fov = 80.5
 script = ExtResource("4_w75kh")
@@ -52,9 +58,27 @@ distance_fade_enabled = true
 spot_range = 18.9476
 spot_angle = 7.05594
 
-[node name="Sprite3D" type="Sprite3D" parent="Camera3D"]
-transform = Transform3D(0.14, 0, 1.06581e-14, -2.22045e-15, 0.14, -7.45058e-09, -1.06581e-14, 7.45058e-09, 0.14, 6.65315e-08, -0.507165, -0.761031)
+[node name="shotgun" type="Sprite3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.203521, -0.935005, -1.43462)
 texture = ExtResource("5_o8i0j")
+
+[node name="flare" type="Sprite3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(0.5, -3.32615e-09, 6.6523e-09, 3.32615e-09, 0.5, 1.41361e-08, -6.6523e-09, -1.41361e-08, 0.5, -0.160854, -0.837604, -1.69301)
+visible = false
+texture = ExtResource("6_cheni")
+script = ExtResource("7_wc8tv")
+
+[node name="flare_delay" type="Timer" parent="Camera3D/flare"]
+unique_name_in_owner = true
+wait_time = 0.266
+one_shot = true
+
+[node name="can_shoot" type="Timer" parent="Camera3D"]
+unique_name_in_owner = true
+wait_time = 0.843
+one_shot = true
 
 [node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("6_kabey")
@@ -62,8 +86,14 @@ tilt_angle = 1.445
 tilt_speed = 12.0
 jump_speed = 2.745
 acceleration = 6.0
-deceleration = 10.0
+deceleration = 15.0
 min_speed = 10.0
+
+[node name="Area3D" type="Area3D" parent="Player"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0220337, 0.69342, 0.0187988)
+shape = SubResource("BoxShape3D_w75kh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
 layer = 10
@@ -133,19 +163,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559977, 0, 37.3927)
 
 [node name="lane4" type="Marker3D" parent="Track" groups=["NoScroll"]]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02787, 0, 37.3927)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02787, 0, -6.33682)
 
 [node name="lane5" type="Marker3D" parent="Track" groups=["NoScroll"]]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.71692, 0, 37.3927)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5864, 0, -7.49647)
 
 [node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("track")]
 script = ExtResource("14_2xhlt")
-segments = Array[PackedScene]([ExtResource("12_kymbj"), ExtResource("14_fdkpn")])
+segments = Array[PackedScene]([ExtResource("12_kymbj"), ExtResource("14_fdkpn"), ExtResource("17_w75kh")])
 track = NodePath("../Track")
 random_amounts = Array[float]([3.0, 3.0, 4.0, 1.0, 2.0])
 
 [node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 2.191
 autostart = true
 
 [connection signal="timeout" from="Player/JustLandedTimer" to="Player" method="_on_just_landed_timer_timeout"]

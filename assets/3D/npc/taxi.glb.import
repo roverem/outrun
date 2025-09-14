@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://1xpo6txat4l6"
-path="res://.godot/imported/police.glb-c5f96f8171eced12d18bacf11e496256.scn"
+uid="uid://34bsutjpak0j"
+path="res://.godot/imported/taxi.glb-02c43e3a1ec634fad196689d8f1275d6.scn"
 
 [deps]
 
-source_file="res://assets/3D/police.glb"
-dest_files=["res://.godot/imported/police.glb-c5f96f8171eced12d18bacf11e496256.scn"]
+source_file="res://assets/3D/npc/taxi.glb"
+dest_files=["res://.godot/imported/taxi.glb-02c43e3a1ec634fad196689d8f1275d6.scn"]
 
 [params]
 

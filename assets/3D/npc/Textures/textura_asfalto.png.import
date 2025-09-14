@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx7nadnoep1xs"
-path.s3tc="res://.godot/imported/textura_fondo.png-08ec2fa40221ce6d18f0af0a30ee2195.s3tc.ctex"
+uid="uid://btlkhkntrwxit"
+path.s3tc="res://.godot/imported/textura_asfalto.png-ff46d95990809072c3beafdb0a6db068.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/3D/Textures/textura_fondo.png"
-dest_files=["res://.godot/imported/textura_fondo.png-08ec2fa40221ce6d18f0af0a30ee2195.s3tc.ctex"]
+source_file="res://assets/3D/npc/Textures/textura_asfalto.png"
+dest_files=["res://.godot/imported/textura_asfalto.png-ff46d95990809072c3beafdb0a6db068.s3tc.ctex"]
 
 [params]
 

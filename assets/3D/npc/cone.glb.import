@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dpfcjx2il8f85"
-path="res://.godot/imported/sedan.glb-a36f4a6e65d1a364609bbf7cfdadd4aa.scn"
+uid="uid://c0dosg7tqxh53"
+path="res://.godot/imported/cone.glb-1d064c040fe86dc97b4dbb4cd719a579.scn"
 
 [deps]
 
-source_file="res://assets/3D/sedan.glb"
-dest_files=["res://.godot/imported/sedan.glb-a36f4a6e65d1a364609bbf7cfdadd4aa.scn"]
+source_file="res://assets/3D/npc/cone.glb"
+dest_files=["res://.godot/imported/cone.glb-1d064c040fe86dc97b4dbb4cd719a579.scn"]
 
 [params]
 
