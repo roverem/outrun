@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cfycxrv44nhc6"]
 
-[ext_resource type="Texture2D" uid="uid://btlkhkntrwxit" path="res://assets/3D/Textures/textura_asfalto.png" id="1_sdn0n"]
+[ext_resource type="Texture2D" uid="uid://btlkhkntrwxit" path="res://assets/3D/npc/Textures/textura_asfalto.png" id="1_sdn0n"]
 [ext_resource type="Script" uid="uid://gw8hufogsdnf" path="res://nodes/segments/track_segment_spawner.gd" id="1_y5apj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_y5apj"]
