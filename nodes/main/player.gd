@@ -8,14 +8,14 @@ extends CharacterBody3D
 @export var yaw_angle: float = 25.0
 @export var pitch_angle: float = 10.0
 
-@export var jump_height: float = 2.0   # how high the car jumps
-@export var jump_speed: float = 5.0    # how fast it goes up
-@export var gravity: float = 9.8       # how fast it falls down
+@export var jump_height: float = 2.0 # how high the car jumps
+@export var jump_speed: float = 5.0 # how fast it goes up
+@export var gravity: float = 9.8 # how fast it falls down
 
-var scroll_speed: float = 0.0        		# current speed
-@export var acceleration: float = 5.0        # how fast it accelerates with UP
-@export var deceleration: float = 3.0        # how fast it slows down when no input
-@export var max_speed: float = 20.0          # cap the speed
+var scroll_speed: float = 0.0 # current speed
+@export var acceleration: float = 5.0 # how fast it accelerates with UP
+@export var deceleration: float = 3.0 # how fast it slows down when no input
+@export var max_speed: float = 20.0 # cap the speed
 @export var min_speed: float = 2
 
 var base_position: Vector3

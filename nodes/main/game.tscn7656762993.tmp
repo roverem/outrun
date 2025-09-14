@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene load_steps=21 format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://nodes/main/game.gd" id="1_fdkpn"]
 [ext_resource type="Script" uid="uid://danclwtqxp5qd" path="res://nodes/main/camera_3d.gd" id="4_w75kh"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dkammd126qk4e" path="res://nodes/main/spawner.gd" id="14_2xhlt"]
 [ext_resource type="PackedScene" uid="uid://b4khraqvy6p6d" path="res://nodes/segments/TrackSegment.tscn" id="14_cheni"]
 [ext_resource type="PackedScene" uid="uid://bu0w2ququce4n" path="res://nodes/npc/police.tscn" id="14_fdkpn"]
+[ext_resource type="PackedScene" uid="uid://cfycxrv44nhc6" path="res://nodes/segments/TrackSegmentSpawner.tscn" id="15_wc8tv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
 atlas = ExtResource("7_asguh")
@@ -147,7 +148,19 @@ autostart = true
 
 [node name="RoadSpawner" type="Node3D" parent="."]
 script = ExtResource("13_rflpb")
-segment_scenes = Array[PackedScene]([ExtResource("14_cheni")])
+normal_segments = Array[PackedScene]([ExtResource("14_cheni")])
+spawner_segment = ExtResource("15_wc8tv")
+initial_fill = null
+keep_ahead = null
+despawn_behind = null
+normal_per_spawner = null
+default_segment_length = null
+player_path = null
+segments_root_path = null
+start_anchor_path = null
+end_anchor_path = null
+use_aabb_length_fallback = null
+debug_print_aabb = null
 
 [node name="Segments" type="Node3D" parent="."]
 
