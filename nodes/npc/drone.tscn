@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dab73a6d3a2sm"]
+[gd_scene load_steps=4 format=3 uid="uid://dab73a6d3a2sm"]
 
-[ext_resource type="PackedScene" uid="uid://c0dosg7tqxh53" path="res://assets/3D/npc/cone.glb" id="1_vo06d"]
+[ext_resource type="ArrayMesh" uid="uid://b4pb26l4cb15r" path="res://assets/3D/npc/3x3x3.obj" id="1_vo06d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8e2h"]
+albedo_color = Color(1, 0.164706, 0.137255, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vo06d"]
+size = Vector3(0.48291, 0.463135, 0.0459595)
 
 [node name="Drone" type="Node3D"]
 
-[node name="cone2" parent="." instance=ExtResource("1_vo06d")]
-transform = Transform3D(8, 0, 0, 0, 0.140389, 2.16479, 0, -10.054, 0.030228, 0, 2.4411, 0)
+[node name="3x3x3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.38447, 0)
+mesh = ExtResource("1_vo06d")
+surface_material_override/0 = SubResource("StandardMaterial3D_a8e2h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 9.9793, 0, 2.92259, -2.71037)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 9.9793, 0.0666504, 2.61622, -0.0746133)
 shape = SubResource("BoxShape3D_vo06d")
 metadata/velocity = 30.0
