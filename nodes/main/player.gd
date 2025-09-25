@@ -25,10 +25,13 @@ var is_jumping: bool = false
 var jumping_yaw: float = 0
 var is_jump_moving:bool = false
 var jumping_direction:float = 0
-var just_landed = false
+var just_landed:bool = false
+var is_hit:bool = false
+
 
 @onready var debug_text: RichTextLabel = %DebugText
 @onready var just_landed_timer:Timer = %JustLandedTimer
+@onready var hit_timer:Timer = %Hit
 @onready var detection_area:Area3D = $Area3D
 
 func _ready():
@@ -41,12 +44,25 @@ func _on_body_entered(body):
 	print("Collided with: ", body)
 	if body is StaticBody3D or body is CharacterBody3D:
 		_resolve_collision(body)
-		
-func _resolve_collision(body):
+
+func _resolve_collision(body: Node3D) -> void:
+	var direction = (global_transform.origin - body.global_transform.origin).normalized()
+	var correction = direction * 0.1  # pick a constant overlap distance
+	_tween_correction(self, correction)
+	if direction.z <= -0.5:
+		is_hit = true
+		hit_timer.start()
+	print(direction)
+	
+	
+
+func _resolve_collision_2(body):
 	var aabb_player = detection_area.get_child(0).shape.get_debug_mesh().get_aabb()
 	aabb_player.position += global_transform.origin
+	print(aabb_player)
 	
-	var aabb_body = body.get_aabb() if body.has_method("get_aabb") else null
+	var aabb_body = _get_collider_aabb(body)
+	print( aabb_body )
 	if aabb_body == null:
 		return
 
@@ -65,6 +81,11 @@ func _tween_correction(target: Node3D, offset: Vector3) -> void:
 		target, "position", target.position + offset, 0.2
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
+func _get_collider_aabb(body: Node3D) -> AABB:
+	var shape_owner = body.get_child(0) as CollisionShape3D
+	if shape_owner and shape_owner.shape:
+		return shape_owner.shape.get_debug_mesh().get_aabb().transformed(shape_owner.global_transform)
+	return AABB()
 
 
 func _process(delta):
@@ -76,10 +97,14 @@ func _process(delta):
 	
 	if is_jump_moving:
 		input_dir = jumping_direction * abs(jumping_yaw / yaw_angle)
+		
+	if is_hit:
+		input_dir = 0
 	
 	# Move left/right
 	global_position.x = clamp(global_position.x + input_dir * steer_speed * delta, -max_steer, max_steer)
 	global_position.z = base_position.z
+	global_position.y = 0
 	
 	# --- Acceleration ---
 	if Input.is_action_pressed("ui_up"):
@@ -87,7 +112,11 @@ func _process(delta):
 	else:
 		# --- Natural deceleration ---
 		scroll_speed -= deceleration * delta
+		
+	if is_hit:
+		scroll_speed = 0
 
+	
 	# clamp between 0 and max_speed
 	scroll_speed = clamp(scroll_speed, min_speed, max_speed)
 	Global.PLAYER_SPEED = scroll_speed
@@ -140,4 +169,8 @@ func _process(delta):
 
 
 func _on_just_landed_timer_timeout() -> void:
-	pass # Replace with function body.
+	pass
+
+
+func _on_hit_timeout() -> void:
+	is_hit = false

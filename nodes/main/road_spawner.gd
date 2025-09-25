@@ -23,7 +23,6 @@ class_name TrackSpawnerLite
 
 # Estado
 var _segments: Array[Node3D] = []   # ordenados de adelante→atrás
-var _accum_length: float = 0.0
 
 func _ready() -> void:
 	# 1) Usamos los hijos ya puestos en la escena como “llenado inicial”

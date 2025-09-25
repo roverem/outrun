@@ -84,7 +84,8 @@ tilt_speed = 12.0
 jump_speed = 2.745
 acceleration = 6.0
 deceleration = 15.0
-min_speed = 10.0
+max_speed = 40.0
+min_speed = 5.0
 
 [node name="Area3D" type="Area3D" parent="Player"]
 
@@ -139,6 +140,10 @@ shape = SubResource("BoxShape3D_lc2xo")
 unique_name_in_owner = true
 one_shot = true
 
+[node name="Hit" type="Timer" parent="Player"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j5wjh")
 
@@ -183,4 +188,5 @@ segment_scenes = Array[PackedScene]([ExtResource("14_cheni")])
 [node name="Segments" type="Node3D" parent="."]
 
 [connection signal="timeout" from="Player/JustLandedTimer" to="Player" method="_on_just_landed_timer_timeout"]
+[connection signal="timeout" from="Player/Hit" to="Player" method="_on_hit_timeout"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
