@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c3wmweemb4l6i"]
+[gd_scene format=3 uid="uid://c3wmweemb4l6i"]
 
 [ext_resource type="Script" uid="uid://dv2c13kbkanq" path="res://nodes/main/game.gd" id="1_fdkpn"]
 [ext_resource type="Script" uid="uid://danclwtqxp5qd" path="res://nodes/main/camera_3d.gd" id="4_w75kh"]
@@ -38,65 +38,64 @@ sky_material = SubResource("PanoramaSkyMaterial_mfdv2")
 background_mode = 2
 sky = SubResource("Sky_eow3j")
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1924945613]
 script = ExtResource("1_fdkpn")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1953320215]
 unique_name_in_owner = true
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28858, -3.02776)
 current = true
 fov = 80.5
 script = ExtResource("4_w75kh")
 
-[node name="DirectionalLight3D" type="SpotLight3D" parent="Camera3D"]
+[node name="DirectionalLight3D" type="SpotLight3D" parent="Camera3D" unique_id=1473384469]
 transform = Transform3D(1, 0, 0, 0, 0.999391, -0.0348995, 0, 0.0348995, 0.999391, 0, 0, 0)
 light_energy = 4.232
 distance_fade_enabled = true
 spot_range = 18.9476
 spot_angle = 7.05594
 
-[node name="shotgun" type="Sprite3D" parent="Camera3D"]
+[node name="shotgun" type="Sprite3D" parent="Camera3D" unique_id=751554296]
 unique_name_in_owner = true
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.203521, -0.935005, -1.43462)
 texture = ExtResource("5_o8i0j")
 
-[node name="flare" type="Sprite3D" parent="Camera3D"]
+[node name="flare" type="Sprite3D" parent="Camera3D" unique_id=1842355524]
 unique_name_in_owner = true
 transform = Transform3D(0.5, -3.32615e-09, 6.6523e-09, 3.32615e-09, 0.5, 1.41361e-08, -6.6523e-09, -1.41361e-08, 0.5, -0.160854, -0.837604, -1.69301)
 visible = false
 texture = ExtResource("6_cheni")
 script = ExtResource("7_wc8tv")
 
-[node name="flare_delay" type="Timer" parent="Camera3D/flare"]
+[node name="flare_delay" type="Timer" parent="Camera3D/flare" unique_id=2055414738]
 unique_name_in_owner = true
 wait_time = 0.266
 one_shot = true
 
-[node name="can_shoot" type="Timer" parent="Camera3D"]
+[node name="can_shoot" type="Timer" parent="Camera3D" unique_id=16616076]
 unique_name_in_owner = true
 wait_time = 0.843
 one_shot = true
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1422084008]
 script = ExtResource("6_kabey")
 tilt_angle = 1.445
 tilt_speed = 12.0
-jump_speed = 2.745
 acceleration = 6.0
 deceleration = 15.0
 max_speed = 40.0
 min_speed = 5.0
 
-[node name="Area3D" type="Area3D" parent="Player"]
+[node name="Area3D" type="Area3D" parent="Player" unique_id=435772783]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Area3D" unique_id=1809179420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0220337, 0.69342, 0.0187988)
 shape = SubResource("BoxShape3D_w75kh")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=874184769]
 layer = 10
 
-[node name="TextureRect" type="TextureRect" parent="Player/CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="Player/CanvasLayer" unique_id=188458971]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -111,81 +110,82 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_ryrav")
 script = ExtResource("8_vpev4")
 
-[node name="DebugText" type="RichTextLabel" parent="Player/CanvasLayer"]
+[node name="DebugText" type="RichTextLabel" parent="Player/CanvasLayer" unique_id=57269443]
 unique_name_in_owner = true
 offset_right = 767.0
 offset_bottom = 145.0
 scroll_active = false
 
-[node name="sedan-sports" parent="Player" instance=ExtResource("9_0l0dt")]
+[node name="sedan-sports" parent="Player" unique_id=1105062463 instance=ExtResource("9_0l0dt")]
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Player/sedan-sports"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Player/sedan-sports" unique_id=1441975985]
 transform = Transform3D(-0.999778, 0, 0.0210819, 0, 1, 0, -0.0210819, 0, -0.999778, -0.390696, 0.69936, 1.09439)
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Player/sedan-sports"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Player/sedan-sports" unique_id=1185521090]
 transform = Transform3D(-0.99992, 0, -0.0126184, 0, 1, 0, 0.0126184, 0, -0.99992, 0.402436, 0.69936, 1.11244)
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Player/sedan-sports"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Player/sedan-sports" unique_id=916679936]
 transform = Transform3D(-0.943344, 0, -0.331816, -0.127344, 0.923425, 0.362036, 0.306407, 0.38378, -0.871108, -0.390696, 1.5657, -2.23555)
 
-[node name="SpotLight3D5" type="SpotLight3D" parent="Player/sedan-sports"]
+[node name="SpotLight3D5" type="SpotLight3D" parent="Player/sedan-sports" unique_id=1977112722]
 transform = Transform3D(-0.844973, 0, 0.53481, 0.207669, 0.921531, 0.328106, -0.492844, 0.388304, -0.778669, 0.402436, 1.19712, -2.47349)
 spot_range = 4.68257
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1515961866]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119324, 0.443685, 0.180054)
 shape = SubResource("BoxShape3D_lc2xo")
 
-[node name="JustLandedTimer" type="Timer" parent="Player"]
+[node name="JustLandedTimer" type="Timer" parent="Player" unique_id=1487847157]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Hit" type="Timer" parent="Player"]
+[node name="Hit" type="Timer" parent="Player" unique_id=1645792135]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2127081269]
 environment = SubResource("Environment_j5wjh")
 
-[node name="Track" type="Node3D" parent="."]
+[node name="Track" type="Node3D" parent="." unique_id=1404572745]
 unique_name_in_owner = true
 script = ExtResource("11_mr67d")
 
-[node name="lane1" type="Marker3D" parent="Track" groups=["NoScroll"]]
+[node name="lane1" type="Marker3D" parent="Track" unique_id=844690711 groups=["NoScroll"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 37.393)
 
-[node name="lane2" type="Marker3D" parent="Track" groups=["NoScroll"]]
+[node name="lane2" type="Marker3D" parent="Track" unique_id=1539795405 groups=["NoScroll"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.393)
 
-[node name="lane3" type="Marker3D" parent="Track" groups=["NoScroll"]]
+[node name="lane3" type="Marker3D" parent="Track" unique_id=1498035161 groups=["NoScroll"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 37.393)
 
-[node name="lane4" type="Marker3D" parent="Track" groups=["NoScroll"]]
+[node name="lane4" type="Marker3D" parent="Track" unique_id=924245177 groups=["NoScroll"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -7)
 
-[node name="lane5" type="Marker3D" parent="Track" groups=["NoScroll"]]
+[node name="lane5" type="Marker3D" parent="Track" unique_id=1378552552 groups=["NoScroll"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -7)
 
-[node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("track")]
+[node name="Spawner" type="Node3D" parent="." unique_id=1491300442 node_paths=PackedStringArray("track")]
 script = ExtResource("14_2xhlt")
 segments = Array[PackedScene]([ExtResource("12_kymbj"), ExtResource("14_fdkpn"), ExtResource("17_w75kh")])
 track = NodePath("../Track")
 random_amounts = Array[float]([3.0, 3.0, 4.0, 1.0, 2.0])
 
-[node name="Timer" type="Timer" parent="Spawner"]
+[node name="Timer" type="Timer" parent="Spawner" unique_id=881112035]
 wait_time = 2.191
 autostart = true
 
-[node name="RoadSpawner" type="Node3D" parent="."]
+[node name="RoadSpawner" type="Node3D" parent="." unique_id=1965628146]
 script = ExtResource("13_rflpb")
 segment_scenes = Array[PackedScene]([ExtResource("14_cheni")])
+speed = 15.0
 
-[node name="Segments" type="Node3D" parent="."]
+[node name="Segments" type="Node3D" parent="." unique_id=1302411094]
 
 [connection signal="timeout" from="Player/JustLandedTimer" to="Player" method="_on_just_landed_timer_timeout"]
 [connection signal="timeout" from="Player/Hit" to="Player" method="_on_hit_timeout"]

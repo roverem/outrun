@@ -36,7 +36,7 @@ var is_hit:bool = false
 
 func _ready():
 	Global.PLAYER_CAR = self
-	base_position = global_position	
+	base_position = global_position
 	
 	detection_area.body_entered.connect(_on_body_entered)
 	
@@ -154,8 +154,6 @@ func _process(delta):
 	
 	if is_jumping:
 		target_yaw = jumping_yaw 
-	
-	
 	
 	if is_jumping:
 		if vertical_velocity > 0:

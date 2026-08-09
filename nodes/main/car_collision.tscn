@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://742ips7lh881"]
+
+[ext_resource type="PackedScene" uid="uid://c1rsmqkj5t1ql" path="res://assets/3D/npc/1965_ferrari_330_gt.glb" id="1_wbe1e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tigv5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tigv5"]
+size = Vector3(4.723419, 1.4916382, 1.7030029)
+
+[node name="Node3D" type="StaticBody3D" unique_id=1377415776]
+physics_material_override = SubResource("PhysicsMaterial_tigv5")
+
+[node name="Sketchfab_Scene" parent="." unique_id=1837373145 instance=ExtResource("1_wbe1e")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=130748277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17002869, 0.76675415, -0.013122559)
+shape = SubResource("BoxShape3D_tigv5")
