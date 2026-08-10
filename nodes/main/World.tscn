@@ -52,19 +52,8 @@ metadata/_custom_type_script = "uid://c03gwfaiygkaj"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.0502684, 1.2248721)
 script = ExtResource("5_owboq")
 
-[node name="Node3D" type="Node3D" parent="Balloon" unique_id=892835911]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9759364, 1.8703604)
-
-[node name="Camera3D" type="Camera3D" parent="Balloon/Node3D" unique_id=337639450]
-transform = Transform3D(1, 0, 0, 0, 0.77162457, 0.63607824, 0, -0.63607824, 0.77162457, 0, 0, -0.27301025)
-current = true
-
-[node name="FreeLookComponent" type="Node" parent="Balloon/Node3D/Camera3D" unique_id=1381900730 node_paths=PackedStringArray("camera")]
-script = ExtResource("8_g6dai")
-camera = NodePath("..")
-horizontal_min_angle = -90
-horizontal_max_angle = 90
-metadata/_custom_type_script = "uid://bhjdcc5dydlyo"
+[node name="BalloonAsset" parent="Balloon" unique_id=1578395939 instance=ExtResource("5_vm3s8")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 3.7244205, 2.0254307)
 
 [node name="FollowBehindComponent" type="Node" parent="Balloon" unique_id=1332565863 node_paths=PackedStringArray("target", "body")]
 unique_name_in_owner = true
@@ -75,8 +64,19 @@ amplitude = 0.825
 speed = 1.0
 metadata/_custom_type_script = "uid://437myqhkle53"
 
-[node name="Sketchfab_Scene" parent="Balloon" unique_id=1578395939 instance=ExtResource("5_vm3s8")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 3.7244205, 2.0254307)
+[node name="CameraHolder" type="Node3D" parent="Balloon" unique_id=892835911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9759364, 1.8703604)
+
+[node name="Camera3D" type="Camera3D" parent="Balloon/CameraHolder" unique_id=337639450]
+transform = Transform3D(1, 0, 0, 0, 0.77162457, 0.63607824, 0, -0.63607824, 0.77162457, 0, 0, -0.27301025)
+current = true
+
+[node name="FreeLookComponent" type="Node" parent="Balloon/CameraHolder/Camera3D" unique_id=1381900730 node_paths=PackedStringArray("camera")]
+script = ExtResource("8_g6dai")
+camera = NodePath("..")
+horizontal_min_angle = -90
+horizontal_max_angle = 90
+metadata/_custom_type_script = "uid://bhjdcc5dydlyo"
 
 [node name="sedan" parent="." unique_id=1637313967 instance=ExtResource("9_4dvhq")]
 transform = Transform3D(0.32668263, 0, -4.3226733, 0, 4.335, 0, 4.3226733, 0, 0.32668263, -0.9546876, 0, -5.0897617)
