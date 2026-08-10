@@ -20,18 +20,12 @@ var base_position:Vector3 = Vector3.ZERO
 
 var jump_just_pressed:bool = false
 var is_jumping:bool = false
-var jumping_yaw: float = 0
+var jumping_yaw: float = 0.0
 var is_jump_moving:bool = false
-var jumping_direction:Vector2 = Vector2.ZERO
 var just_landed:bool = false
 var jump_tween:Tween
 
 func tick(delta:float)->void:
-	
-	# Avoid turning mid-air
-	if is_jump_moving:
-		direction.x = jumping_direction.x * abs(jumping_yaw / yaw_angle)
-		
 	# Position
 	body.global_position.x = clamp(body.global_position.x + direction.x * steer_speed * delta, -max_steer, max_steer)
 	body.global_position.z = base_position.z + direction.y * 10
@@ -46,27 +40,30 @@ func tick(delta:float)->void:
 	var target_yaw = -direction.x * yaw_angle             # Y axis slight twist
 	var target_pitch = abs(direction.x) * pitch_angle     # X axis dip
 	
-	if is_jumping:
-		target_yaw = jumping_yaw 
-		#target_pitch = jumping_direction.y * pitch_angle
+	if is_jump_moving:
+		target_yaw = jumping_yaw
 	
 	body.rotation_degrees.z = lerp(body.rotation_degrees.z, target_roll, delta * tilt_speed)
 	body.rotation_degrees.y = lerp(body.rotation_degrees.y, target_yaw, delta * (tilt_speed * 0.35))
-	#body.rotation_degrees.x = target_pitch #lerp(body.rotation_degrees.x, target_pitch, delta * (tilt_speed * 0.5))
+	body.rotation_degrees.x = target_pitch #lerp(body.rotation_degrees.x, target_pitch, delta * (tilt_speed * 0.5))
 
 func _execute_jump()->void:
 	is_jumping = true
-	if jumping_yaw != 0:
+	
+	# Jump while steering. Store direction in which the jump was made
+	if direction.x != 0:
 		is_jump_moving = true
-		jumping_direction.x = direction.x
+		jumping_yaw = body.rotation_degrees.y
 		
 	jump_tween = create_tween()
+	jump_tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	jump_tween.tween_property(body, "global_position:y", jump_height, jump_speed * 0.5)
+	jump_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	jump_tween.tween_property(body, "global_position:y", base_position.y, jump_speed * 0.5)
 	jump_tween.tween_callback( func():
 		is_jumping = false
 		is_jump_moving = false
-		jumping_direction = Vector2.ZERO
+		jumping_yaw = 0.0
 	)
 	
 	var pitch_tween = create_tween()

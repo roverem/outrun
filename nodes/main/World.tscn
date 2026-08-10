@@ -11,7 +11,7 @@ size = Vector3(1, 1.2470398, 2.6185303)
 [node name="World" type="Node3D" unique_id=751455972]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=337639450]
-transform = Transform3D(0.99999714, 0.00044172522, -0.0023601274, 0.0007825653, 0.8693042, 0.494277, 0.0022700028, -0.49427742, 0.8693013, 0.008684635, 1.6127534, 4.5825977)
+transform = Transform3D(0.8741073, -0.24068108, 0.42191124, 0.00078256516, 0.8693042, 0.49427697, -0.4857323, -0.43172094, 0.76005346, 3.5239983, 1.6127534, 2.7513475)
 v_offset = 1.575
 
 [node name="TaxiPlayer" type="CharacterBody3D" parent="." unique_id=243608483]
@@ -35,4 +35,6 @@ unique_name_in_owner = true
 script = ExtResource("4_cjvi6")
 body = NodePath("..")
 model = NodePath("../taxi")
+yaw_angle = 45.0
+jump_speed = 0.8
 metadata/_custom_type_script = "uid://c03gwfaiygkaj"
