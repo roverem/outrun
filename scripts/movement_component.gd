@@ -1,15 +1,17 @@
 class_name MovementComponent extends Node
 
+# Assign these on the editor
 @export var body: CharacterBody3D
 @export var model: Node3D
 
+# Car variables
 @export var steer_speed: float = 3.5
 @export var max_steer: float = 6.5
 @export var tilt_angle: float = 0.0
 @export var tilt_speed: float = 5.0
 @export var yaw_angle: float = 25.0
 
-
+# Variables set by player
 var direction:Vector2 = Vector2.ZERO
 var base_position:Vector3 = Vector3.ZERO
 
