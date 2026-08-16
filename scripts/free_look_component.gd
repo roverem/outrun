@@ -11,8 +11,8 @@ class_name FreeLookComponent extends Node
 var yaw:float
 var pitch:float
 
-func _process(delta: float) -> void:
-	print(camera.rotation_degrees)
+func _process(_delta: float) -> void:
+	camera.rotation_degrees
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

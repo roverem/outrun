@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b72sejc1lva1q"]
+
+[ext_resource type="Script" uid="uid://cwvcs0ce2sio1" path="res://projectile.gd" id="1_ebpx6"]
+[ext_resource type="PackedScene" uid="uid://b6x7qf6q0csgm" path="res://assets/3D/fireball_vfx.glb" id="2_k6et4"]
+
+[node name="projectile" type="Node3D" unique_id=2130703813]
+script = ExtResource("1_ebpx6")
+initial_size = Vector3(0.05, 0.05, 2)
+max_size = Vector3(2, 2, 2)
+growth_time = 0.3
+
+[node name="Sketchfab_Scene2" parent="." unique_id=1535398569 instance=ExtResource("2_k6et4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.83423495, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=2102691169]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
