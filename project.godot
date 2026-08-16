@@ -15,12 +15,16 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="OutRun"
-run/main_scene="res://nodes/main/game.tscn"
+run/main_scene="uid://rjh3pv0y8dlx"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
 Global="*res://scripts/Global.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/minimize_html_build/plugin.cfg")
 
 [global_group]
 

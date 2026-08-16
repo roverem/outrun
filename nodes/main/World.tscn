@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://rjh3pv0y8dlx"]
 
-[ext_resource type="PackedScene" uid="uid://b6x7qf6q0csgm" path="res://assets/3D/fireball_vfx.glb" id="1_adoqs"]
 [ext_resource type="PackedScene" uid="uid://t2q0kjwnou7m" path="res://assets/3D/stairs_for_survival_videogame.glb" id="1_djw7i"]
 [ext_resource type="Script" uid="uid://dhdpctif4q3jd" path="res://nodes/main/world.gd" id="1_gcuup"]
 [ext_resource type="Script" uid="uid://48kj27f2ygvk" path="res://nodes/main/taxi_player.gd" id="1_u6c2r"]
 [ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/npc/taxi.glb" id="2_cjvi6"]
-[ext_resource type="Script" uid="uid://6riqogx858vt" path="res://assets/3D/fireball.gd" id="2_gcuup"]
 [ext_resource type="Script" uid="uid://bq4cdx5h1asfh" path="res://scripts/input_component.gd" id="3_vm3s8"]
 [ext_resource type="Script" uid="uid://c03gwfaiygkaj" path="res://scripts/movement_component.gd" id="4_cjvi6"]
 [ext_resource type="Script" uid="uid://bpm7f20sn0rgr" path="res://nodes/main/balloon.gd" id="5_owboq"]
@@ -13,6 +11,7 @@
 [ext_resource type="Script" uid="uid://437myqhkle53" path="res://scripts/follow_behind_component.gd" id="6_hga5q"]
 [ext_resource type="Script" uid="uid://bhjdcc5dydlyo" path="res://scripts/free_look_component.gd" id="8_g6dai"]
 [ext_resource type="PackedScene" uid="uid://dpfcjx2il8f85" path="res://assets/3D/npc/sedan.glb" id="9_4dvhq"]
+[ext_resource type="PackedScene" uid="uid://t8igpyr4sfkd" path="res://assets/3D/magic_wand.glb" id="10_2sgl7"]
 [ext_resource type="Script" uid="uid://0kufnqkxrhbp" path="res://scripts/spawn_projectile.gd" id="11_aqbm0"]
 [ext_resource type="PackedScene" uid="uid://b72sejc1lva1q" path="res://nodes/npc/projectile.tscn" id="12_f1bol"]
 
@@ -25,15 +24,11 @@ size = Vector3(0.99328613, 2.211792, 2.6971436)
 [node name="World" type="Node3D" unique_id=751455972]
 script = ExtResource("1_gcuup")
 
-[node name="Sketchfab_Scene2" parent="." unique_id=1535398569 instance=ExtResource("1_adoqs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2609038, 0)
-script = ExtResource("2_gcuup")
-
 [node name="Sketchfab_Scene" parent="." unique_id=927736522 instance=ExtResource("1_djw7i")]
 transform = Transform3D(0.6183025, -0.43294016, -9.992876, 11.47153, 16.38304, 4.539683e-09, 16.371368, -11.463358, 0.37740403, -17.94054, -21.658386, 0)
 
-[node name="Sketchfab_Scene2" parent="." unique_id=114296046 instance=ExtResource("1_djw7i")]
-transform = Transform3D(0.6183025, -0.43294016, -9.992876, 11.47153, 16.38304, 4.539683e-09, 16.371368, -11.463358, 0.37740403, -17.94054, -24.16249, -34.51806)
+[node name="Sketchfab_Scene3" parent="." unique_id=114296046 instance=ExtResource("1_djw7i")]
+transform = Transform3D(0.6183025, -0.43294016, -9.992876, 11.47153, 16.38304, 9.079366e-09, 16.37137, -11.463359, 0.3774041, -17.94054, -24.16249, -34.51806)
 
 [node name="TaxiPlayer" type="CharacterBody3D" parent="." unique_id=243608483]
 motion_mode = 1
@@ -79,21 +74,20 @@ metadata/_custom_type_script = "uid://437myqhkle53"
 [node name="CameraHolder" type="Node3D" parent="Balloon" unique_id=892835911]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.891, 1.87)
 
-[node name="Marker3D" type="Node3D" parent="Balloon/CameraHolder" unique_id=607182760]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011627436, -0.17057848, -0.4496045)
-
-[node name="Sketchfab_Scene2" parent="Balloon/CameraHolder/Marker3D" unique_id=1535398569 instance=ExtResource("1_adoqs")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-visible = false
-
 [node name="Camera3D" type="Camera3D" parent="Balloon/CameraHolder" unique_id=337639450]
-transform = Transform3D(1, 0, 0, 0, 0.77162457, 0.63607824, 0, -0.63607824, 0.77162457, 0, 0, -0.27301025)
+transform = Transform3D(1, 0, 0, 0, 0.77162457, 0.63607824, 0, -0.63607824, 0.77162457, 0, 0.14664078, -0.27301025)
 current = true
+
+[node name="Wand" parent="Balloon/CameraHolder/Camera3D" unique_id=818977557 instance=ExtResource("10_2sgl7")]
+transform = Transform3D(0.024845736, 0.002714085, 0.00056837057, -0.0016246572, 0.01840049, -0.016845847, -0.0022471747, 0.016704962, 0.01846333, 0, -0.38089347, -0.34236383)
+
+[node name="Marker3D" type="Node3D" parent="Balloon/CameraHolder/Camera3D/Wand" unique_id=607182760]
+transform = Transform3D(19.999998, 0, 0, 0, 19.999998, 9.536743e-07, 0, -9.536743e-07, 19.999998, 0, -0.23687744, -23.948944)
 
 [node name="SpawnProjectileComponent" type="Node" parent="Balloon/CameraHolder/Camera3D" unique_id=2146984110 node_paths=PackedStringArray("spawn_point", "camera")]
 unique_name_in_owner = true
 script = ExtResource("11_aqbm0")
-spawn_point = NodePath("../../Marker3D")
+spawn_point = NodePath("../Wand/Marker3D")
 projectile = ExtResource("12_f1bol")
 camera = NodePath("..")
 metadata/_custom_type_script = "uid://0kufnqkxrhbp"
@@ -124,3 +118,5 @@ transform = Transform3D(-2.8687348, 0, -3.2500134, 0, 4.3350005, 0, 3.2500134, 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="sedan2/StaticBody3D" unique_id=1531556111]
 transform = Transform3D(1, 0, 0, 0, 1.0000004, 0, 0, 0, 1, -0.0033569336, 0.6058964, 0.024841294)
 shape = SubResource("BoxShape3D_62ckc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1360554072]

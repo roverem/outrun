@@ -5,9 +5,7 @@
 
 [node name="projectile" type="Node3D" unique_id=2130703813]
 script = ExtResource("1_ebpx6")
-initial_size = Vector3(0.05, 0.05, 2)
-max_size = Vector3(2, 2, 2)
-growth_time = 0.3
+initial_size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Sketchfab_Scene2" parent="." unique_id=1535398569 instance=ExtResource("2_k6et4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.83423495, 0)
