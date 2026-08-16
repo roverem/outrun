@@ -1,6 +1,7 @@
 class_name FreeLookComponent extends Node
 
-@export var camera : Camera3D 
+@export var camera : Camera3D
+@export var secondary_camera:Camera3D
 
 @export_range(-360, 360) var horizontal_min_angle = -260
 @export_range(-360, 360) var horizontal_max_angle = -110
@@ -24,3 +25,10 @@ func _input(event: InputEvent) -> void:
 		
 		camera.rotation_degrees.y = yaw
 		camera.rotation_degrees.x = pitch
+
+	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB:
+		if camera.current:
+			secondary_camera.make_current()
+		elif secondary_camera.current:
+			camera.make_current()
+		
