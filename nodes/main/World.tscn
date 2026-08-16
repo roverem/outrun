@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dhdpctif4q3jd" path="res://nodes/main/world.gd" id="1_gcuup"]
 [ext_resource type="Script" uid="uid://48kj27f2ygvk" path="res://nodes/main/taxi_player.gd" id="1_u6c2r"]
 [ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/npc/taxi.glb" id="2_cjvi6"]
+[ext_resource type="Script" uid="uid://6riqogx858vt" path="res://assets/3D/fireball.gd" id="2_gcuup"]
 [ext_resource type="Script" uid="uid://bq4cdx5h1asfh" path="res://scripts/input_component.gd" id="3_vm3s8"]
 [ext_resource type="Script" uid="uid://c03gwfaiygkaj" path="res://scripts/movement_component.gd" id="4_cjvi6"]
 [ext_resource type="Script" uid="uid://bpm7f20sn0rgr" path="res://nodes/main/balloon.gd" id="5_owboq"]
@@ -23,6 +24,10 @@ size = Vector3(0.99328613, 2.211792, 2.6971436)
 
 [node name="World" type="Node3D" unique_id=751455972]
 script = ExtResource("1_gcuup")
+
+[node name="Sketchfab_Scene2" parent="." unique_id=1535398569 instance=ExtResource("1_adoqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2609038, 0)
+script = ExtResource("2_gcuup")
 
 [node name="Sketchfab_Scene" parent="." unique_id=927736522 instance=ExtResource("1_djw7i")]
 transform = Transform3D(0.6183025, -0.43294016, -9.992876, 11.47153, 16.38304, 4.539683e-09, 16.371368, -11.463358, 0.37740403, -17.94054, -21.658386, 0)
