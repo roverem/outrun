@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://rjh3pv0y8dlx"]
 
-[ext_resource type="PackedScene" uid="uid://t2q0kjwnou7m" path="res://assets/3D/stairs_for_survival_videogame.glb" id="1_djw7i"]
 [ext_resource type="Script" uid="uid://dhdpctif4q3jd" path="res://nodes/main/world.gd" id="1_gcuup"]
 [ext_resource type="Script" uid="uid://48kj27f2ygvk" path="res://nodes/main/taxi_player.gd" id="1_u6c2r"]
 [ext_resource type="PackedScene" uid="uid://34bsutjpak0j" path="res://assets/3D/npc/taxi.glb" id="2_cjvi6"]
@@ -9,34 +8,31 @@
 [ext_resource type="Script" uid="uid://bpm7f20sn0rgr" path="res://nodes/main/balloon.gd" id="5_owboq"]
 [ext_resource type="PackedScene" uid="uid://wqpd0fo1kpvc" path="res://assets/3D/hot_air_balloon.glb" id="5_vm3s8"]
 [ext_resource type="Script" uid="uid://437myqhkle53" path="res://scripts/follow_behind_component.gd" id="6_hga5q"]
+[ext_resource type="PackedScene" uid="uid://crsesrh0b8y62" path="res://assets/3D/low_poly_mccree.glb" id="8_fujxv"]
 [ext_resource type="Script" uid="uid://bhjdcc5dydlyo" path="res://scripts/free_look_component.gd" id="8_g6dai"]
-[ext_resource type="PackedScene" uid="uid://dpfcjx2il8f85" path="res://assets/3D/npc/sedan.glb" id="9_4dvhq"]
 [ext_resource type="PackedScene" uid="uid://t8igpyr4sfkd" path="res://assets/3D/magic_wand.glb" id="10_2sgl7"]
+[ext_resource type="Script" uid="uid://cv5qqmdojnn4r" path="res://assets/3D/magic_wand.gd" id="11_2sgl7"]
 [ext_resource type="Script" uid="uid://0kufnqkxrhbp" path="res://scripts/spawn_projectile.gd" id="11_aqbm0"]
 [ext_resource type="PackedScene" uid="uid://b72sejc1lva1q" path="res://nodes/npc/projectile.tscn" id="12_f1bol"]
+[ext_resource type="PackedScene" uid="uid://232aww8oks7n" path="res://assets/vfx/fireball/fireball_impact.tscn" id="14_dqhdl"]
+[ext_resource type="PackedScene" uid="uid://b513ennyb8us1" path="res://car_enemy.tscn" id="15_2sgl7"]
+[ext_resource type="PackedScene" uid="uid://c48ymwtcflvsc" path="res://nodes/main/road.tscn" id="16_dqhdl"]
+[ext_resource type="Script" uid="uid://dyexrcfcumx51" path="res://nodes/main/my_floating_ui.gd" id="18_kqaje"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tigv5"]
 size = Vector3(1, 1.2470398, 2.6185303)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_62ckc"]
-size = Vector3(0.99328613, 2.211792, 2.6971436)
 
 [node name="World" type="Node3D" unique_id=751455972]
 script = ExtResource("1_gcuup")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1123770169]
-transform = Transform3D(0.14719874, 0, -0.98910695, 0, 1, 0, 0.98910695, 0, 0.14719874, -13.416477, 3.2874374, -1.8802261)
+transform = Transform3D(0.05353552, 0.34652317, -0.9365125, -0.05119259, 0.9375766, 0.3439905, 0.9972528, 0.029526785, 0.067933045, -8.695711, 4.6240206, 0.44393063)
 current = true
-
-[node name="Sketchfab_Scene" parent="." unique_id=927736522 instance=ExtResource("1_djw7i")]
-transform = Transform3D(0.6183025, -0.43294016, -9.992876, 11.47153, 16.38304, 4.539683e-09, 16.371368, -11.463358, 0.37740403, -17.94054, -21.658386, 0)
-
-[node name="Sketchfab_Scene3" parent="." unique_id=114296046 instance=ExtResource("1_djw7i")]
-transform = Transform3D(0.6183025, -0.43294016, -9.992876, 11.47153, 16.38304, 9.079366e-09, 16.37137, -11.463359, 0.3774041, -17.94054, -24.16249, -34.51806)
 
 [node name="TaxiPlayer" type="CharacterBody3D" parent="." unique_id=243608483]
 motion_mode = 1
 script = ExtResource("1_u6c2r")
+min_speed = 12.0
 
 [node name="taxi" parent="TaxiPlayer" unique_id=1347243802 instance=ExtResource("2_cjvi6")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -55,6 +51,8 @@ unique_name_in_owner = true
 script = ExtResource("4_cjvi6")
 body = NodePath("..")
 model = NodePath("../taxi")
+steer_speed = 6.0
+jump_height = 0.6
 jump_speed = 0.8
 metadata/_custom_type_script = "uid://c03gwfaiygkaj"
 
@@ -63,7 +61,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.67, 1.225)
 script = ExtResource("5_owboq")
 
 [node name="BalloonAsset" parent="Balloon" unique_id=1578395939 instance=ExtResource("5_vm3s8")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 3.7244205, 2.0254307)
+transform = Transform3D(-0.39990282, 0, 0.0088161975, 0, 0.39999995, 0, -0.0088161975, 0, -0.39990282, 0, 3.7244205, 2.0254307)
+
+[node name="Sketchfab_Scene" parent="Balloon/BalloonAsset" unique_id=989885408 instance=ExtResource("8_fujxv")]
+transform = Transform3D(1.42, 0, 0, 0, 1.4200003, 0, 0, 0, 1.42, 0.059971362, 0.33090258, 0.70463514)
 
 [node name="FollowBehindComponent" type="Node" parent="Balloon" unique_id=1332565863 node_paths=PackedStringArray("target", "body")]
 unique_name_in_owner = true
@@ -83,17 +84,24 @@ transform = Transform3D(1, 0, 0, 0, 0.77162457, 0.63607824, 0, -0.63607824, 0.77
 current = true
 
 [node name="Wand" parent="Balloon/CameraHolder/Camera3D" unique_id=818977557 instance=ExtResource("10_2sgl7")]
-transform = Transform3D(0.024845736, 0.002714085, 0.00056837057, -0.0016246572, 0.01840049, -0.016845847, -0.0022471747, 0.016704962, 0.01846333, 0, -0.38089347, -0.34236383)
+transform = Transform3D(0.024848217, 0.0026848302, 0.0005980126, -0.0016593105, 0.018966012, -0.016203, -0.0021937678, 0.016064933, 0.019029066, 0, -0.38089347, -0.34236383)
+script = ExtResource("11_2sgl7")
+wind_up_duration = 0.2
+wind_down_duration = 0.1
+wind_up_top_angle = 80.0
 
 [node name="Marker3D" type="Node3D" parent="Balloon/CameraHolder/Camera3D/Wand" unique_id=607182760]
 transform = Transform3D(19.999998, 6.35162e-07, 5.9604645e-08, -3.7439167e-07, 19.999996, 8.940697e-07, 1.1920929e-07, -9.536743e-07, 19.999994, -0.1960907, 1.5773926, -24.040634)
 
-[node name="SpawnProjectileComponent" type="Node" parent="Balloon/CameraHolder/Camera3D" unique_id=2146984110 node_paths=PackedStringArray("spawn_point", "camera")]
+[node name="SpawnProjectileComponent" type="Node" parent="Balloon/CameraHolder/Camera3D" unique_id=2146984110 node_paths=PackedStringArray("spawn_point", "camera", "to_animate")]
 unique_name_in_owner = true
 script = ExtResource("11_aqbm0")
 spawn_point = NodePath("../Wand/Marker3D")
 projectile = ExtResource("12_f1bol")
 camera = NodePath("..")
+to_animate = NodePath("../Wand")
+shoot_vfx = ExtResource("14_dqhdl")
+shoot_delay = 0.3
 metadata/_custom_type_script = "uid://0kufnqkxrhbp"
 
 [node name="FreeLookComponent" type="Node" parent="Balloon/CameraHolder/Camera3D" unique_id=1381900730 node_paths=PackedStringArray("camera", "secondary_camera")]
@@ -106,22 +114,45 @@ horizontal_max_angle = 90
 vertical_min_angle = -40
 metadata/_custom_type_script = "uid://bhjdcc5dydlyo"
 
-[node name="sedan" parent="." unique_id=1637313967 instance=ExtResource("9_4dvhq")]
-transform = Transform3D(2.3048513, 0, -3.6714966, 0, 4.3350005, 0, 3.6714966, 0, 2.3048513, -5.8427186, 0, -12.881926)
+[node name="Car" parent="." unique_id=1296108491 instance=ExtResource("15_2sgl7")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.8738973, -0.09176159, -3.66811)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="sedan" unique_id=1242349442]
+[node name="Car2" parent="." unique_id=1404391166 instance=ExtResource("15_2sgl7")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.5004196, -0.7033311, -16.71933)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="sedan/StaticBody3D" unique_id=1601808280]
-transform = Transform3D(1, 0, 0, 0, 1.0000004, 0, 0, 0, 1, -0.0033569336, 0.6058964, 0.024841294)
-shape = SubResource("BoxShape3D_62ckc")
-
-[node name="sedan2" parent="." unique_id=1969313338 instance=ExtResource("9_4dvhq")]
-transform = Transform3D(-4.3041983, 0, 0.5158528, 0, 4.3350005, 0, -0.5158528, 0, -4.3041983, 4.4773974, 0, -6.4199076)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="sedan2" unique_id=722738311]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="sedan2/StaticBody3D" unique_id=1531556111]
-transform = Transform3D(1, 0, 0, 0, 1.0000004, 0, 0, 0, 1, -0.0033569336, 0.6058964, 0.024841294)
-shape = SubResource("BoxShape3D_62ckc")
+[node name="Road" parent="." unique_id=1494844039 instance=ExtResource("16_dqhdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6440125, 0, -91.87216)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1360554072]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=972669674]
+
+[node name="MyFloatingUI" type="Control" parent="CanvasLayer" unique_id=160176465 node_paths=PackedStringArray("target_object")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_kqaje")
+target_object = NodePath("../../Car")
+
+[node name="Label" type="Label" parent="CanvasLayer/MyFloatingUI" unique_id=1549903774]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HITS: 
+"
+
+[node name="MyFloatingUI2" type="Control" parent="CanvasLayer" unique_id=1833877308 node_paths=PackedStringArray("target_object")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_kqaje")
+target_object = NodePath("../../Car2")
+
+[node name="Label" type="Label" parent="CanvasLayer/MyFloatingUI2" unique_id=1149867241]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HITS: 
+"

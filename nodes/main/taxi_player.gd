@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@export var global_speed:float = 15
+@export var min_speed:float = 5
+
 @onready var input_component:InputComponent = %InputComponent
 @onready var movement_component: MovementComponent = %MovementComponent
 
@@ -15,6 +18,8 @@ func _physics_process(delta: float) -> void:
 	
 	movement_component.direction = input_component.move_dir
 	movement_component.jump_just_pressed = input_component.jump_pressed
+	
+	Global.PLAYER_SPEED = clamp(-input_component.move_dir.y * global_speed, min_speed, global_speed)
 	
 	input_component.clear()
 	

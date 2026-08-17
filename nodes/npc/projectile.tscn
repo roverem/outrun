@@ -2,14 +2,24 @@
 
 [ext_resource type="Script" uid="uid://cwvcs0ce2sio1" path="res://projectile.gd" id="1_ebpx6"]
 [ext_resource type="PackedScene" uid="uid://b6x7qf6q0csgm" path="res://assets/3D/fireball_vfx.glb" id="2_k6et4"]
+[ext_resource type="PackedScene" uid="uid://232aww8oks7n" path="res://assets/vfx/fireball/fireball_impact.tscn" id="2_npjx0"]
 
-[node name="projectile" type="Node3D" unique_id=2130703813]
+[sub_resource type="SphereShape3D" id="SphereShape3D_tigv5"]
+radius = 0.91175365
+
+[node name="projectile" type="Area3D" unique_id=825139763]
+transform = Transform3D(0.2101143, 0.9776768, 0, -0.9776768, 0.2101143, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_ebpx6")
+impact_vfx = ExtResource("2_npjx0")
+metadata/_custom_type_script = "uid://xeowvoqeurgv"
 
 [node name="Sketchfab_Scene2" parent="." unique_id=1535398569 instance=ExtResource("2_k6et4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.83423495, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12699418, -0.8289628, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=2102691169]
 unique_name_in_owner = true
 wait_time = 4.0
 one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=913009569]
+shape = SubResource("SphereShape3D_tigv5")

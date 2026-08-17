@@ -30,7 +30,7 @@ var jump_tween:Tween
 func tick(delta:float)->void:
 	# Position
 	body.global_position.x = clamp(body.global_position.x + direction.x * steer_speed * delta, -max_steer, max_steer)
-	body.global_position.z = base_position.z + direction.y * 10
+	#body.global_position.z = base_position.z + direction.y * 10
 	body.global_position.y = 0
 	
 	# Jump

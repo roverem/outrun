@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b513ennyb8us1"]
+
+[ext_resource type="Script" uid="uid://b1sqme0rt7rb6" path="res://car_enemy.gd" id="1_2a1ag"]
+[ext_resource type="PackedScene" uid="uid://dpfcjx2il8f85" path="res://assets/3D/npc/sedan.glb" id="1_qca0s"]
+[ext_resource type="Script" uid="uid://bicewywxp1io4" path="res://scripts/hurt_box_3d.gd" id="3_602v0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t5p65"]
+height = 2.2988281
+radius = 0.5942383
+
+[node name="Car" type="CharacterBody3D" unique_id=1296108491 node_paths=PackedStringArray("_car_skin")]
+motion_mode = 1
+script = ExtResource("1_2a1ag")
+_car_skin = NodePath("sedan")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=725999403]
+transform = Transform3D(1, 0, 0, 0, -0.007330038, -0.9999731, 0, 0.9999731, -0.007330038, 0, 0.6378605, -0.10296729)
+shape = SubResource("CylinderShape3D_t5p65")
+
+[node name="sedan" parent="." unique_id=1798203040 instance=ExtResource("1_qca0s")]
+
+[node name="HurtBox3D" type="Area3D" parent="." unique_id=495523837]
+unique_name_in_owner = true
+script = ExtResource("3_602v0")
+metadata/_custom_type_script = "uid://bicewywxp1io4"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox3D" unique_id=1698245291]
+transform = Transform3D(1, 0, 0, 0, -0.007330038, -0.9999731, 0, 0.9999731, -0.007330038, 0, 0.6378605, -0.10296729)
+shape = SubResource("CylinderShape3D_t5p65")

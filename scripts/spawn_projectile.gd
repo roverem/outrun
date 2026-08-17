@@ -3,6 +3,8 @@ class_name SpawnProjectileComponent extends Node
 @export var spawn_point:Node3D
 @export var projectile:PackedScene
 @export var camera:Camera3D
+@export var to_animate:Node3D
+@export var shoot_vfx:PackedScene
 
 @export var shoot_delay:float = 0.5
 
@@ -24,6 +26,14 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if not can_shoot:
 			return
+		
+		to_animate.shoot()
+		await to_animate.done_shooting
+		
+		var emission:Node3D = shoot_vfx.instantiate()
+		emission.transform = spawn_point.transform
+		emission.scale = Vector3.ONE * 0.8
+		add_sibling(emission)
 		
 		var proj:Projectile = projectile.instantiate()		
 		get_tree().current_scene.add_child(proj)
