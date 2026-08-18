@@ -2,98 +2,113 @@
 
 [ext_resource type="Script" uid="uid://bwopw7hmw04wh" path="res://nodes/main/road.gd" id="1_qvdwd"]
 [ext_resource type="PackedScene" uid="uid://bcs5gotjceyvs" path="res://assets/3D/low_poly_winter_scene.glb" id="1_ylnci"]
-[ext_resource type="PackedScene" uid="uid://bl7b851nl1w0p" path="res://assets/3D/coin.glb" id="2_0dyx7"]
-[ext_resource type="Script" uid="uid://cq7bwdd8frj06" path="res://nodes/main/coin.gd" id="2_5rv0v"]
+[ext_resource type="PackedScene" uid="uid://dtejrwclvxhgl" path="res://nodes/main/coin.tscn" id="2_0dyx7"]
 
 [node name="Road" type="Node3D" unique_id=1494844039]
 script = ExtResource("1_qvdwd")
 
 [node name="coins" type="Node3D" parent="." unique_id=578470281]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16277122, 75.33805)
 
-[node name="Coin" type="Node3D" parent="coins" unique_id=1978278569]
+[node name="Coin" parent="coins" unique_id=1254649678 instance=ExtResource("2_0dyx7")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.328458, 0.18934369, -3.6056137)
-script = ExtResource("2_5rv0v")
 
-[node name="Sketchfab_Scene" parent="coins/Coin" unique_id=505084086 instance=ExtResource("2_0dyx7")]
+[node name="Coin2" parent="coins" unique_id=91062011 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.328458, 0.18934369, -6.9967957)
 
-[node name="Coin2" type="Node3D" parent="coins" unique_id=1629612134]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.147789, 0.18934368, -9.910049)
-script = ExtResource("2_5rv0v")
+[node name="Coin3" parent="coins" unique_id=760404021 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.328458, 0.18934369, -11.629868)
 
-[node name="Sketchfab_Scene" parent="coins/Coin2" unique_id=1341446425 instance=ExtResource("2_0dyx7")]
+[node name="Coin4" parent="coins" unique_id=1281925525 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.328458, 0.18934369, -14.405411)
 
-[node name="Coin3" type="Node3D" parent="coins" unique_id=324556402]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.46490765, 0.18934368, -18.049526)
-script = ExtResource("2_5rv0v")
+[node name="Coin5" parent="coins" unique_id=489696138 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.328458, 0.18934369, -16.121635)
 
-[node name="Sketchfab_Scene" parent="coins/Coin3" unique_id=2040914514 instance=ExtResource("2_0dyx7")]
+[node name="Coin6" parent="coins" unique_id=754139330 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.328458, 0.18934369, -17.878098)
 
-[node name="Coin4" type="Node3D" parent="coins" unique_id=654663410]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.46490765, 0.18934368, -25.826305)
-script = ExtResource("2_5rv0v")
+[node name="Coin7" parent="coins" unique_id=1110765667 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.328458, 0.18934369, -19.683388)
 
-[node name="Sketchfab_Scene" parent="coins/Coin4" unique_id=1935199941 instance=ExtResource("2_0dyx7")]
+[node name="Coin8" parent="coins" unique_id=1050094060 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.328458, 0.18934369, -21.419693)
 
-[node name="Coin5" type="Node3D" parent="coins" unique_id=1815733960]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.46490765, 0.18934368, -34.198204)
-script = ExtResource("2_5rv0v")
+[node name="Coin9" parent="coins" unique_id=1892032353 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4.2029247, 0.18934369, -23.43488)
 
-[node name="Sketchfab_Scene" parent="coins/Coin5" unique_id=1829514543 instance=ExtResource("2_0dyx7")]
+[node name="Coin10" parent="coins" unique_id=901495952 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.4014273, 0.18934369, -25.77098)
 
-[node name="Coin6" type="Node3D" parent="coins" unique_id=169336124]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.420582, 0.18934368, -44.98951)
-script = ExtResource("2_5rv0v")
+[node name="Coin11" parent="coins" unique_id=1263700762 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.4014273, 0.18934369, -27.846466)
 
-[node name="Sketchfab_Scene" parent="coins/Coin6" unique_id=1982708289 instance=ExtResource("2_0dyx7")]
+[node name="Coin12" parent="coins" unique_id=1514142333 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.6015654, 0.18934369, -30.018532)
 
-[node name="Coin7" type="Node3D" parent="coins" unique_id=1528520730]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.8608422, 0.18934368, -47.41635)
-script = ExtResource("2_5rv0v")
+[node name="Coin13" parent="coins" unique_id=1755150078 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.6015654, 0.18934369, -33.409714)
 
-[node name="Sketchfab_Scene" parent="coins/Coin7" unique_id=1113884619 instance=ExtResource("2_0dyx7")]
+[node name="Coin14" parent="coins" unique_id=966811885 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.6015654, 0.18934369, -38.042786)
 
-[node name="Coin8" type="Node3D" parent="coins" unique_id=223707023]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.23236227, 0.18934368, -50.695015)
-script = ExtResource("2_5rv0v")
+[node name="Coin15" parent="coins" unique_id=1770989423 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.6015654, 0.18934369, -40.81833)
 
-[node name="Sketchfab_Scene" parent="coins/Coin8" unique_id=1109331219 instance=ExtResource("2_0dyx7")]
+[node name="Coin16" parent="coins" unique_id=1029676214 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.6015654, 0.18934369, -42.534554)
 
-[node name="Coin9" type="Node3D" parent="coins" unique_id=1594206129]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.23236227, 0.18934368, -53.800747)
-script = ExtResource("2_5rv0v")
+[node name="Coin17" parent="coins" unique_id=1661025609 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.6015654, 0.18934369, -44.291016)
 
-[node name="Sketchfab_Scene" parent="coins/Coin9" unique_id=1560590353 instance=ExtResource("2_0dyx7")]
+[node name="Coin18" parent="coins" unique_id=1093083900 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.6015654, 0.18934369, -46.096306)
 
-[node name="Coin10" type="Node3D" parent="coins" unique_id=107996646]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -3.7748017, 0.18934368, -58.830482)
-script = ExtResource("2_5rv0v")
+[node name="Coin19" parent="coins" unique_id=166513570 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.6015654, 0.18934369, -47.83261)
 
-[node name="Sketchfab_Scene" parent="coins/Coin10" unique_id=767399537 instance=ExtResource("2_0dyx7")]
+[node name="Coin20" parent="coins" unique_id=947756387 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.47603226, 0.18934369, -49.847797)
 
-[node name="Coin11" type="Node3D" parent="coins" unique_id=648604215]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.938867, 0.18934368, -66.13506)
-script = ExtResource("2_5rv0v")
+[node name="Coin21" parent="coins" unique_id=711741431 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.3254652, 0.18934369, -52.1839)
 
-[node name="Sketchfab_Scene" parent="coins/Coin11" unique_id=571473769 instance=ExtResource("2_0dyx7")]
+[node name="Coin22" parent="coins" unique_id=1672821746 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.3254652, 0.18934369, -54.259384)
 
-[node name="Coin12" type="Node3D" parent="coins" unique_id=676561054]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.938867, 0.18934368, -72.2374)
-script = ExtResource("2_5rv0v")
+[node name="Coin23" parent="coins" unique_id=1908364761 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.2785897, 0.18934369, -71.820244)
 
-[node name="Sketchfab_Scene" parent="coins/Coin12" unique_id=2112093012 instance=ExtResource("2_0dyx7")]
+[node name="Coin24" parent="coins" unique_id=762080678 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.2785897, 0.18934369, -75.211426)
 
-[node name="Coin13" type="Node3D" parent="coins" unique_id=1398136674]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.938867, 0.18934368, -80.3299)
-script = ExtResource("2_5rv0v")
+[node name="Coin25" parent="coins" unique_id=102262229 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.2785897, 0.18934369, -79.8445)
 
-[node name="Sketchfab_Scene" parent="coins/Coin13" unique_id=373722564 instance=ExtResource("2_0dyx7")]
+[node name="Coin26" parent="coins" unique_id=1898178821 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.2785897, 0.18934369, -82.62004)
 
-[node name="Coin14" type="Node3D" parent="coins" unique_id=1847716857]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -1.0559478, 0.18934368, -86.168045)
-script = ExtResource("2_5rv0v")
+[node name="Coin27" parent="coins" unique_id=1859498333 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.2785897, 0.18934369, -84.336266)
 
-[node name="Sketchfab_Scene" parent="coins/Coin14" unique_id=675204434 instance=ExtResource("2_0dyx7")]
+[node name="Coin28" parent="coins" unique_id=601424802 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.2785897, 0.18934369, -86.09273)
+
+[node name="Coin29" parent="coins" unique_id=1003700291 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.2785897, 0.18934369, -87.89802)
+
+[node name="Coin30" parent="coins" unique_id=1304312054 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.2785897, 0.18934369, -89.63432)
+
+[node name="Coin31" parent="coins" unique_id=1575575757 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5.1530566, 0.18934369, -91.64951)
+
+[node name="Coin32" parent="coins" unique_id=635902280 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -3.3515592, 0.18934369, -93.98561)
+
+[node name="Coin33" parent="coins" unique_id=127193800 instance=ExtResource("2_0dyx7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -3.3515592, 0.18934369, -96.0611)
 
 [node name="city" type="Node3D" parent="." unique_id=1554113052]
 
@@ -144,3 +159,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.
 
 [node name="Sketchfab_Scene17" parent="city" unique_id=771253141 instance=ExtResource("1_ylnci")]
 transform = Transform3D(0.020602036, 0, -0.99978775, 0, 1, 0, 0.99978775, 0, 0.020602036, 4.3350887, -0.30888176, 69.890854)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=931008587]
+transform = Transform3D(-0.9978834, 0.050553508, -0.040903077, 0.022245971, 0.8564339, 0.5157769, 0.061105132, 0.5137752, -0.8557459, -7.1758766, 1.7228222, 68.933044)

@@ -27,6 +27,8 @@ func _input(event: InputEvent) -> void:
 		if not can_shoot:
 			return
 		
+		can_shoot = false
+		
 		to_animate.shoot()
 		await to_animate.done_shooting
 		
@@ -43,5 +45,4 @@ func _input(event: InputEvent) -> void:
 		var forward_direction = -camera.global_transform.basis.z.normalized()
 		proj.direction = forward_direction
 		
-		can_shoot = false
 		shoot_timer.start()

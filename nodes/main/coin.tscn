@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dtejrwclvxhgl"]
+
+[ext_resource type="Script" uid="uid://cq7bwdd8frj06" path="res://nodes/main/coin.gd" id="1_ljgj0"]
+[ext_resource type="PackedScene" uid="uid://bl7b851nl1w0p" path="res://assets/3D/coin.glb" id="2_7t6lg"]
+[ext_resource type="Script" uid="uid://2md2e2h3bvdb" path="res://scripts/collectable.gd" id="3_7t6lg"]
+[ext_resource type="Script" uid="uid://xpnav0o5hbw4" path="res://scripts/floating_component.gd" id="4_8nhde"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t5p65"]
+radius = 0.20458984
+height = 0.7158203
+
+[node name="Coin" type="Node3D" unique_id=1254649678]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("1_ljgj0")
+
+[node name="FloatingComponent" type="Node" parent="." unique_id=771836569 node_paths=PackedStringArray("floater")]
+unique_name_in_owner = true
+script = ExtResource("4_8nhde")
+floater = NodePath("..")
+lower_pos = 0.4
+upper_pos = 1.2
+metadata/_custom_type_script = "uid://xpnav0o5hbw4"
+
+[node name="Sketchfab_Scene" parent="." unique_id=505084086 instance=ExtResource("2_7t6lg")]
+
+[node name="Collectable" type="Area3D" parent="." unique_id=1126845184]
+unique_name_in_owner = true
+script = ExtResource("3_7t6lg")
+metadata/_custom_type_script = "uid://2md2e2h3bvdb"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectable" unique_id=649052335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0014648438, 0)
+shape = SubResource("CapsuleShape3D_t5p65")
