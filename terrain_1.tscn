@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://darjgfbp35ui8"]
+
+[ext_resource type="PackedScene" uid="uid://bcs5gotjceyvs" path="res://assets/3D/low_poly_winter_scene.glb" id="1_eyie6"]
+
+[node name="Sketchfab_Scene" unique_id=1737061766 instance=ExtResource("1_eyie6")]
+
+[node name="Cylinder_000" parent="Sketchfab_model/Root" parent_id_path=PackedInt32Array(40208302) index="4" unique_id=385131003]
+visible = false
+
+[node name="Plane" parent="Sketchfab_model/Root" parent_id_path=PackedInt32Array(40208302) index="7" unique_id=561813032]
+visible = false
+
+[node name="Cylinder_002" parent="Sketchfab_model/Root" parent_id_path=PackedInt32Array(40208302) index="8" unique_id=1223797246]
+visible = false
+
+[node name="Cylinder_001" parent="Sketchfab_model/Root" parent_id_path=PackedInt32Array(40208302) index="9" unique_id=441728615]
+visible = false
